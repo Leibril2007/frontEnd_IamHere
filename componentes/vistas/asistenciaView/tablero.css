@@ -1,0 +1,116 @@
+.sec-tab-dom{
+    grid-row: 2/3;
+    width: 100%;
+}
+
+.sec-tablero{
+    width: 100%;
+    padding: 1rem;
+}
+
+.tit-grado-tab{
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    color: rgb(146, 101, 213);
+}
+
+.titsEGenerales{
+    font-size: 1.6rem;
+}
+
+/* MOSTRAR GRADOS */
+
+
+.d-base-ins-tab{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(5, 1fr);
+}
+
+.tit-ins-gen{
+
+}
+
+.bt-ins-gen{
+    max-width: 3rem;
+    width: 100%;
+    height: 3rem;
+}
+
+.tit-bt-pres-tab{
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+
+.bt-pres-tab-ins{
+    grid-column: 2/3;
+    grid-row: 1/2;
+    background-color: blue;
+}
+
+.tit-bt-au-tab{
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+.bt-au-tab-ins{
+    grid-column: 2/3;
+    grid-row: 2/3;
+    background-color: red;
+}
+
+.tit-cor-tab{
+    grid-column: 1/2;
+    grid-row: 3/4;
+}
+.ic-cor-tab-ins{
+    grid-column: 2/3;
+    grid-row: 3/4;
+}
+
+.tit-el-tab{
+    grid-column: 1/2;
+    grid-row: 4/5;
+}
+.ic-el-tab-ins{
+    grid-column: 2/3;
+    grid-row: 4/5;
+}
+
+
+.d-cor-gen{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+
+.c-alumno{
+    max-width: 100%;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    height: 5rem;
+    padding: 1rem 1.5rem;
+    background-color: #e7e0a1;
+    border-radius: 2.5rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    align-items: center;
+    text-align: start;
+}
+.nombre-alumno{
+    grid-row: 1/2;
+}
+.base-inputs{
+    justify-content: center;
+    grid-column: 3/4;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    font-size: 1.5rem;
+}
