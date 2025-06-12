@@ -28,7 +28,7 @@ function cargarPrincipal(){
 
     btnLogin.addEventListener("click", function(){
         console.log("FUNCIONA BRO")
-        window.location.href = "../componentes/paginas/login.html";
+        window.location.href = "/frontEnd_IamHere/componentes/paginas/login.html";
     });
 
     principal.appendChild(btnLogin);
