@@ -52,6 +52,11 @@ function cargarLogin(){
     botonRecuperar.textContent = "Recuperar contraseña";
     formularioLogin.appendChild(botonRecuperar);
 
+    botonRecuperar.addEventListener("click", function(){
+        window.location.href = "recuperarContraseña.html";
+    });
+
+
     let botonIngresar = document.createElement('div');
     botonIngresar.className = "boton boton-ingresar";
     botonIngresar.textContent = "Ingresar";
