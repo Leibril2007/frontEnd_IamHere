@@ -1,3 +1,5 @@
+import { cadaAlumno } from "../../modulos/lista/lista.js";
+
 function cargarTablero(grados, gradoId, alumnoGId){
     let sectionTablero = document.createElement('section');
     sectionTablero.className = "sec-tablero";
@@ -79,7 +81,29 @@ function cargarTablero(grados, gradoId, alumnoGId){
     let divAlumno = document.createElement('div');
     divAlumno.className = "div-alumno";
 
+    divAlumno.appendChild(cadaAlumno());
     sectionTablero.appendChild(divAlumno);
+
+    /* BOTONES AGREGAR Y GUARDAR */    
+
+    // Botón "Agregar alumno"
+    let btnAgregar = document.createElement('div');
+    btnAgregar.className = "boton btn-agregar";
+    btnAgregar.textContent = "Agregar alumno";
+
+    // Botón "Guardar asistencia"
+    let btnGuardar = document.createElement('div');
+    btnGuardar.className = "boton btn-guardar";
+    btnGuardar.textContent = "Guardar asistencia";
+
+    let btnActualizar = document.createElement('div');
+    btnActualizar.className = "boton btn-guardar";
+    btnActualizar.textContent = "Actualizar asistencia";
+
+
+    sectionTablero.appendChild(btnAgregar);
+    sectionTablero.appendChild(btnGuardar);
+    sectionTablero.appendChild(btnActualizar);
 
     return sectionTablero;
 
