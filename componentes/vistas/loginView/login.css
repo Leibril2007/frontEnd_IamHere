@@ -151,3 +151,12 @@
     color: #d3891a;
     transition: 0.2s;
 }
+
+.error{
+    align-self: self-start;
+    justify-self: center;
+    color: red;
+    font-size: 1.7rem;
+    font-family: Roboto Flex;
+    font-weight: 600;
+}

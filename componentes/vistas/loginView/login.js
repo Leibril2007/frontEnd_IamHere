@@ -63,8 +63,54 @@ function cargarLogin(){
 
     /* FUNCION INGRESAR */
 
-    botonIngresar.addEventListener("click", function(){
-        window.location.href = "asistencia.html";
+    botonIngresar.addEventListener("click", async function(){
+
+        let valorUsEm = inputUsuarioEmail.value;
+        let valorPass = inputPassword.value;
+
+        const errorExistente = formularioLogin.querySelector(".error");
+        if (errorExistente) {
+          errorExistente.remove();
+        }
+
+        try {
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    correo: valorUsEm,
+                    contraseña: valorPass
+                })
+            });
+
+            const data = await response.json();
+
+        
+            if (!response.ok) {
+
+              let errorMsg = document.createElement('p');
+              errorMsg.className = "error";
+              errorMsg.textContent = data.message || "Error al iniciar sesión";
+              formularioLogin.appendChild(errorMsg);
+              return;
+              
+            } else {
+                localStorage.setItem("usuario", JSON.stringify(data.user));
+                window.location.href = "asistencia.html";
+            }
+
+
+        } catch (error){
+            console.error("Error en el fetch:", error);
+            let errorMsg = document.createElement('p');
+            errorMsg.className = "error";
+            errorMsg.textContent = "No se pudo conectar al servidor";
+            formularioLogin.appendChild(errorMsg);
+        }
+        
+
     });
 
 
