@@ -166,3 +166,7 @@
     align-self: center;
     justify-self: center;
 }
+
+.ocultar{
+    display: none;
+}

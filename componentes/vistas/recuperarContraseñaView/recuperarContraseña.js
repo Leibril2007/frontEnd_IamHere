@@ -1,3 +1,5 @@
+import { cargarVCodigo } from "./codigoContraseña/codigoContraseña.js";
+
 let llamarRecuperar = document.querySelector('#recuperarContraseñaB');
 
 function cargarRecuperar(){
@@ -52,6 +54,16 @@ function cargarRecuperar(){
     botonRecuperar.className = "boton boton-recuperar";
     botonRecuperar.textContent = "Recuperar contraseña";
     formularioLogin.appendChild(botonRecuperar);
+
+
+    botonRecuperar.addEventListener("click", function(){
+        /* window.location.href = "recuperarContraseña.html"; */
+        if(!seccionLogin.classList.contains("ocultar")){
+            seccionLogin.classList.add("ocultar");
+        }
+
+        llamarRecuperar.appendChild(cargarVCodigo());
+    });
 
     let botonIngresar = document.createElement('div');
     botonIngresar.className = "boton boton-ingresar";
