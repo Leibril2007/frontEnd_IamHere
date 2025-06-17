@@ -1,0 +1,59 @@
+.ventana {
+    grid-column: 1/3;
+
+    background: #ddd;
+    padding: 20px;
+    border: 1px solid #aaa;
+    border-radius: 8px;
+    width: 250px;
+    font-family: sans-serif;
+    position: relative;
+}
+
+.titulo-ventana {
+    color: darkorange;
+    margin-bottom: 10px;
+}
+
+.area-observacion {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.btn-amarillo {
+    background: gold;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.btn-violeta {
+    background: violet;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.btn-mini {
+    background: lightgray;
+    border: none;
+    padding: 3px 6px;
+    margin: 5px 2px;
+}
+
+.campo {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+}
+
+.cerrar {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+}

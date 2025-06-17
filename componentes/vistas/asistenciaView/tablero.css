@@ -48,7 +48,7 @@
 .bt-pres-tab-ins{
     grid-column: 2/3;
     grid-row: 1/2;
-    background-color: blue;
+    background-color: #005DA9;
 }
 
 .tit-bt-au-tab{
@@ -58,7 +58,7 @@
 .bt-au-tab-ins{
     grid-column: 2/3;
     grid-row: 2/3;
-    background-color: red;
+    background-color: #D32424;
 }
 
 .tit-cor-tab{
