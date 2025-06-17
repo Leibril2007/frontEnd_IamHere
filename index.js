@@ -1,5 +1,6 @@
 let principal = document.querySelector("#root");
 
+
 function cargarPrincipal(){
 
     let divLogo = document.createElement('div');

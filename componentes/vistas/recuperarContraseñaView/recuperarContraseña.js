@@ -1,3 +1,4 @@
+/* import { cargarCambio } from "./cambiarContraseña/cambiarContraseña.js"; */
 import { cargarVCodigo } from "./codigoContraseña/codigoContraseña.js";
 
 let llamarRecuperar = document.querySelector('#recuperarContraseñaB');
@@ -89,4 +90,4 @@ function cargarRecuperar(){
 
 llamarRecuperar.appendChild(cargarRecuperar());
 
-export { cargarRecuperar };
+export { cargarRecuperar }; 

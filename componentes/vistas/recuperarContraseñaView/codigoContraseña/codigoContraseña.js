@@ -1,4 +1,6 @@
 /* let loginPage = document.querySelector('#codigoContaseña'); */
+import { cargarCambio } from "../cambiarContraseña/cambiarContraseña.js";
+let rec = document.querySelector('#recuperarContraseñaB');
 
 function cargarVCodigo(){
 
@@ -55,7 +57,11 @@ function cargarVCodigo(){
     /* FUNCION INGRESAR */
 
     botonIngresar.addEventListener("click", function(){
-        window.location.href = "asistencia.html";
+        if(!seccionLogin.classList.contains("ocultar")){
+            seccionLogin.classList.add("ocultar");
+        }
+
+        rec.appendChild(cargarCambio());
     });
 
 
@@ -69,6 +75,7 @@ function cargarVCodigo(){
     return seccionLogin;
 
 }
+/* rec.appendChild(cargarVCodigo()); */
 
 /* loginPage.appendChild(cargarVCodigo()); */
 
