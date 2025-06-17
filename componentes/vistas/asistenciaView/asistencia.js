@@ -4,19 +4,20 @@ import { cargarFooter } from "../../modulos/footer/footer.js";
 import { cargarTablero } from "./tablero.js";
 import { users } from "../../conexiones/conexiones.js";
 
+
+
 let conexionAs = document.querySelector('#asistenciaB');
 conexionAs.appendChild(cargarHeaderLog());
 
-function añadirTablero(){
+function añadirTablero(ngSel, idGradoSel){
     let divTabB = document.createElement('div');
     divTabB.className = "div-tab-b";
-    divTabB.appendChild(cargarTablero());
+    divTabB.appendChild(cargarTablero(ngSel, idGradoSel));
 
     return divTabB;
 }
-
-
 let darDatosU = users();
+
 conexionAs.appendChild(cargarNav(darDatosU.usuario, darDatosU.correo, darDatosU.grados_id));
 
 let logoTabAs = document.createElement('img');

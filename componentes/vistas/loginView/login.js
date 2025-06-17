@@ -98,6 +98,7 @@ function cargarLogin(){
               
             } else {
                 localStorage.setItem("usuario", JSON.stringify(data.user));
+                localStorage.setItem("idMaestro", data.user.id);
                 window.location.href = "asistencia.html";
             }
 
@@ -122,7 +123,6 @@ function cargarLogin(){
 
     seccionLogin.appendChild(formularioLogin);
     return seccionLogin;
-
 }
 
 loginPage.appendChild(cargarLogin());

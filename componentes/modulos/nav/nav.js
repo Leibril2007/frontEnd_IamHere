@@ -1,5 +1,6 @@
 import { conexionAs } from "../../vistas/asistenciaView/asistencia.js";
 import { añadirTablero } from "../../vistas/asistenciaView/asistencia.js";
+import { agregarAsis } from "../../conexiones/enviarDatos.js";
 
 function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
 
@@ -44,9 +45,27 @@ function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
     let selectGrados = document.createElement('select');
     selectGrados.className = "select";
 
+    let defaultOption = document.createElement('option');
+    defaultOption.textContent = "Grados";
+    defaultOption.value = "";
+    selectGrados.appendChild(defaultOption);
     
-    selectGrados.addEventListener('change', function(){
-        conexionAs.appendChild(añadirTablero());
+    selectGrados.addEventListener('change', async function(){
+
+        const selectedOption = selectGrados.options[selectGrados.selectedIndex];
+        const nomGradoSel = selectedOption.textContent;
+        const idGradoSel = selectedOption.value;
+
+        localStorage.setItem("idGradoSel", idGradoSel);
+
+        let tabAnt = document.querySelector('.sec-tablero');
+        
+        if(tabAnt){
+            tabAnt.remove();
+        }
+
+        conexionAs.appendChild(añadirTablero(nomGradoSel, idGradoSel));
+
     });
 
 
@@ -63,6 +82,10 @@ function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
     fechaInp.className = "fecha-inp";
     fechaInp.type = "date";
     navPag.appendChild(fechaInp);
+
+    fechaInp.addEventListener("change", function() {
+        localStorage.setItem("recFecha", fechaInp.value);
+    });
 
     let btnProyeccionProf = document.createElement('div');
     btnProyeccionProf.className = "btn-proyeccion-prof";

@@ -9,6 +9,7 @@
 
 .div-tab-b{
     grid-row: 3/4;
+    grid-column: 1/2;
 }
 
 .logo-tab{
