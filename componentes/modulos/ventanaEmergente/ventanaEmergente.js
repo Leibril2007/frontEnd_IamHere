@@ -1,3 +1,5 @@
+import { almacenarAvisoGeneral } from "../../conexiones/enviarDatos.js";
+
 function ventUniforme(idAlumno) {
     let contenedor = document.createElement('div');
     contenedor.className = 'ventana';
@@ -57,21 +59,35 @@ function ventCorreo(idAlumno) {
     btnGuardar.className = 'btn-amarillo';
 
     btnGuardar.onclick = () => {
-        let observaciones = JSON.parse(localStorage.getItem("msjCorPer")) || {};
-        observaciones[idAlumno] = areaTexto.value.trim();
-        localStorage.setItem("msjCorPer", JSON.stringify(observaciones));
+        let observaciones = {};
+        const dataRaw = localStorage.getItem("correoPers");
+        if (dataRaw) {
+            try {
+                observaciones = JSON.parse(dataRaw);
+            } catch (e) {
+                console.error("Error al parsear correoPers:", e);
+            }
+        }
+
+        const texto = areaTexto.value.trim();
+        if (texto !== "") {
+            observaciones[idAlumno] = texto;
+            localStorage.setItem("correoPers", JSON.stringify(observaciones));
+        }
+
         contenedor.remove();
     };
-
-    contenedor.appendChild(btnGuardar);
 
     let btnEnviar = document.createElement('button');
     btnEnviar.textContent = 'Enviar correo';
     btnEnviar.className = 'btn-violeta';
 
-    contenedor.append(titulo, cerrar, areaTexto, btnEnviar);
+    contenedor.append(titulo, cerrar, areaTexto, btnGuardar, btnEnviar);
     return contenedor;
 }
+
+
+
 
 function ventEliminar() {
     let contenedor = document.createElement('div');
@@ -128,8 +144,30 @@ function ventCorreoGen() {
     btnGuardar.className = 'btn-amarillo';
 
     btnGuardar.onclick = () => {
-        localStorage.setItem("recUni", areaTexto.value);
-        alert("Observación guardada");
+
+        let observaciones = {};
+        const dataRaw = localStorage.getItem("correoGen");
+        if (dataRaw) {
+            try {
+                observaciones = JSON.parse(dataRaw);
+            } catch (e) {
+                console.error("Error al parsear correoPers:", e);
+            }
+        }
+
+        const texto = areaTexto.value.trim();
+        if (texto !== "") {
+            observaciones = texto;
+            localStorage.setItem("correoGen", JSON.stringify(observaciones));
+
+            const idMaestro = localStorage.getItem("idMaestro");
+            const idGradoSel = localStorage.getItem("idGradoSel");
+
+            almacenarAvisoGeneral(observaciones, idGradoSel, idMaestro);
+        }
+
+        contenedor.remove();
+    
     };
     contenedor.appendChild(btnGuardar);
 

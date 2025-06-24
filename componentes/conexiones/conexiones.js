@@ -11,6 +11,7 @@ function users() {
 
   const user = JSON.parse(datosGuardados); 
 
+  let idU = user.id;
   let u = user.usuario;
   let c = user.correo;
   let gradoId = user.grados_id;
@@ -18,6 +19,8 @@ function users() {
 
   console.log(u);
   console.log(c);
+
+  localStorage.setItem("idMaestro", idU);
 
   cargarNav(u, c, gradoId);
   cargarGrados(id);

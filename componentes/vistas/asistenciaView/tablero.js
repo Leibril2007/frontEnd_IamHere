@@ -152,15 +152,16 @@ function cargarTablero(ngSel, idGradoSel){
 
     btnGuardar.addEventListener("click", async function() {
 
-      const idMaestro = localStorage.getItem("idMaestro");
+        const idMaestro = localStorage.getItem("idMaestro");
         const idGradoSel = localStorage.getItem("idGradoSel");
         const recFecha = localStorage.getItem("recFecha");
-        const correoPers = localStorage.getItem("correoPers");
+        const correoPersonal = JSON.parse(localStorage.getItem("correoPers")) || {};
         const obsPorAlumno = JSON.parse(localStorage.getItem("obsPorAlum")) || {};
         const asistencias = JSON.parse(localStorage.getItem("asistencias")) || {};
-        
+
         const alumnos = await alumnosBd();
         const alumnosDelGrado = alumnos.filter(alumno => alumno.grados_id == idGradoSel);
+
 
         for (const alumno of alumnosDelGrado) {
             const idAlumno = alumno.id;
@@ -176,7 +177,7 @@ function cargarTablero(ngSel, idGradoSel){
                     delete obsPorAlumno[idAlumno];
                 }
                 
-                await agregarAsis(idMaestro, idGradoSel, idAlumno, recFecha, estado, correoPers, uniforme_id);
+                await agregarAsis(idMaestro, idGradoSel, idAlumno, recFecha, estado, correoPersonal[idAlumno]?.trim() || null, uniforme_id);
 
                 delete asistencias[idAlumno];
             }
@@ -187,6 +188,7 @@ function cargarTablero(ngSel, idGradoSel){
         
         localStorage.removeItem("idAlumnosMarcados");
 
+        localStorage.removeItem("recFecha");
 
   });
   

@@ -1,6 +1,6 @@
 import { marcarPresencia } from "../../vistas/asistenciaView/funcionAsistencia.js";
 import { ventUniforme, ventEliminar, ventCorreo } from "../../modulos/ventanaEmergente/ventanaEmergente.js";
-import { agregarUniforme } from "../../conexiones/enviarDatos.js";
+import { agregarUniforme, agregarAsis } from "../../conexiones/enviarDatos.js";
 
 function cadaAlumno(nomAl){
     
@@ -58,7 +58,7 @@ function cadaAlumno(nomAl){
         console.log("ESTADO:", recAsistencia);
         console.log("ID grado", idGradoSel);
         console.log("FECHITA", recFecha);
-        console.log("CORREO PERSONAL", correoPers);
+/*         console.log("CORREO PERSONAL", correoPers); */
 
         const obsPorAlumno = JSON.parse(localStorage.getItem("obsPorAlum")) || {};
         const valorObsUni = obsPorAlumno[idAlumno] || null;

@@ -1,11 +1,14 @@
 function agregarAsis(idMaestro,idGrado,idAlumno,recFecha,recAsistencia,correoPers,recUniAlum) {
+    
+    console.log("ID DEL MAESTRO QUE LLEGO: ",idMaestro);
+    
     fetch("http://localhost:3000/agregarAsistencia", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            usuario_id: idMaestro,  
+            usuarios_id: idMaestro,  
             grados_id: idGrado,      
             alumnos_id: idAlumno,    
             fecha: recFecha,  
@@ -26,8 +29,8 @@ function agregarUniforme(observaciones, alumnos_id) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            observaciones,
-            alumnos_id
+            observaciones: observaciones,
+            alumnos_id: alumnos_id
         })
     })
     .then(res => res.json())
@@ -42,7 +45,34 @@ function agregarUniforme(observaciones, alumnos_id) {
 }
 
 
+function almacenarAvisoGeneral(correoGen, idGrado, idMaestro){
+    
+    console.log("AVISO: ", correoGen, idGrado, idMaestro);
+
+    return fetch("http://localhost:3000/avisoGeneralAlum", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            correo_general: correoGen,
+            grados_id: idGrado,
+            usuarios_id: idMaestro
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("Aviso Registrado:", data);
+        return data.id;
+    })
+    .catch(err => {
+        console.error("Error al registrar aviso general:", err);
+        return null;
+    }); 
+
+} 
 
 
-export { agregarAsis, agregarUniforme };
+
+export { agregarAsis, agregarUniforme, almacenarAvisoGeneral };
 
