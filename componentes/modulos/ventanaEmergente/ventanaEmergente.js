@@ -25,7 +25,11 @@ function ventUniforme(idAlumno) {
         let observaciones = JSON.parse(localStorage.getItem("obsPorAlum")) || {};
         observaciones[idAlumno] = areaTexto.value.trim();
         localStorage.setItem("obsPorAlum", JSON.stringify(observaciones));
-        contenedor.remove();
+        
+        let msjGuardVent = document.createElement('p');
+        msjGuardVent.className = "msj-guard-vent";
+        msjGuardVent.textContent = "¡Guardado éxitosamente!";
+        contenedor.appendChild(msjGuardVent);
     };
 
     let btnEnviar = document.createElement('button');
@@ -75,7 +79,10 @@ function ventCorreo(idAlumno) {
             localStorage.setItem("correoPers", JSON.stringify(observaciones));
         }
 
-        contenedor.remove();
+        let msjGuardVent = document.createElement('p');
+        msjGuardVent.className = "msj-guard-vent";
+        msjGuardVent.textContent = "¡Guardado éxitosamente!";
+        contenedor.appendChild(msjGuardVent);
     };
 
     let btnEnviar = document.createElement('button');
@@ -103,7 +110,7 @@ function ventEliminar() {
     cerrar.onclick = ()=> contenedor.remove();
 
     let inputContra = document.createElement('input');
-    inputContra.type = 'password';
+    /* inputContra.type = 'password'; */
     inputContra.placeholder = 'Contraseña';
     inputContra.className = 'campo';
 
@@ -111,11 +118,8 @@ function ventEliminar() {
     btnConfirmar.textContent = 'confirmar';
     btnConfirmar.className = 'btn-mini';
 
-    let btnCancelar = document.createElement('button');
-    btnCancelar.textContent = 'regresar a la lista';
-    btnCancelar.className = 'btn-mini';
 
-    contenedor.append(titulo, cerrar, inputContra, btnConfirmar, btnCancelar);
+    contenedor.append(titulo, cerrar, inputContra, btnConfirmar);
     return contenedor;
 }
 
@@ -166,16 +170,18 @@ function ventCorreoGen() {
             almacenarAvisoGeneral(observaciones, idGradoSel, idMaestro);
         }
 
-        contenedor.remove();
+        let msjGuardVent = document.createElement('p');
+        msjGuardVent.className = "msj-guard-vent";
+        msjGuardVent.textContent = "¡Guardado éxitosamente!";
+        contenedor.appendChild(msjGuardVent);
     
     };
-    contenedor.appendChild(btnGuardar);
 
     let btnEnviar = document.createElement('button');
     btnEnviar.textContent = 'Enviar correo';
     btnEnviar.className = 'btn-violeta';
 
-    contenedor.append(titulo, cerrar, areaTexto, btnEnviar);
+    contenedor.append(titulo, cerrar, areaTexto, btnEnviar, btnGuardar);
     return contenedor;
 }
 
