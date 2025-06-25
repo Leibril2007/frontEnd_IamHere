@@ -2,51 +2,73 @@
     grid-column: 1/3;
 
     background: #ddd;
-    padding: 20px;
+    padding: 1rem;
     border: 1px solid #aaa;
     border-radius: 8px;
-    width: 250px;
+    width: 100%;
+    max-width: 45rem;
     font-family: sans-serif;
     position: relative;
+    justify-self: center;
 }
 
 .titulo-ventana {
     color: darkorange;
     margin-bottom: 10px;
+    justify-self: center;
+    font-size: 2.3rem;
+    font-family: "Orelega One", serif;
+    font-weight: 200;
 }
 
 .area-observacion {
     width: 100%;
-    height: 100px;
+    height: 18rem;
     margin-bottom: 10px;
+    outline: none;
+    padding: 0.5rem;
+    font-family: "Lemon", serif;
+    color: #696969;
 }
 
 .btn-amarillo {
-    background: gold;
+    background: transparent;
     border: none;
     padding: 5px 10px;
-    margin-right: 5px;
+    margin-right: 2rem;
     cursor: pointer;
+    justify-self: center;
+    font-family: "Orelega One", serif;
+    font-size: 1.8rem;
+    color: #967604;
 }
 
 .btn-violeta {
-    background: violet;
+    background: transparent;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+    font-family: "Orelega One", serif;
+    font-size: 1.8rem;
+    color: #967604;
 }
 
 .btn-mini {
-    background: lightgray;
+    background: rgb(205, 205, 205);
     border: none;
     padding: 3px 6px;
-    margin: 5px 2px;
+    font-size: 1.6rem;
+    margin-top: 1.5rem;
+    border-radius: 0.5rem;
 }
 
 .campo {
     width: 100%;
     padding: 5px;
     margin: 5px 0;
+    font-size: 1.8rem;
+    font-family: "Orelega One", serif;
+    color: #6a6a6a;
 }
 
 .cerrar {
@@ -56,4 +78,14 @@
     cursor: pointer;
     color: black;
     font-weight: bold;
+    font-size: 2rem;
+    color: #6e6e6e;
+}
+
+.msj-guard-vent{
+    margin-top: 1.5rem;
+    font-size: 1.5rem;
+    justify-self: center;
+    font-family: "Lemon", serif;
+    color: darkorange;
 }

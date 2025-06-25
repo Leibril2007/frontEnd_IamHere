@@ -8,12 +8,15 @@
     padding: 1rem;
 }
 
-.tit-grado-tab{
+.tit-grado-tablero{
+
     text-align: center;
-    font-size: 2rem;
+    font-size: 2.7rem;
     margin-top: 2rem;
     margin-bottom: 3rem;
-    color: rgb(146, 101, 213);
+    color: #000CB6;
+    font-family: "Orelega One", serif;
+    font-weight: 400;
 }
 
 .titsEGenerales{
@@ -32,6 +35,9 @@
 
 .tit-ins-gen{
     text-align: end;
+    color: #824100;
+    font-size: 1.8rem;
+    font-weight: 300;
 }
 
 .bt-ins-gen{
@@ -68,6 +74,7 @@
 .ic-cor-tab-ins{
     grid-column: 2/3;
     grid-row: 3/4;
+    font-size: 2.5rem;
 }
 
 .tit-el-tab{
@@ -81,9 +88,31 @@
 
 
 .d-cor-gen{
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+}
+.tit-cor-gen{
+    align-self: center;
+    justify-self: start;
+    color: #824100;
+    font-size: 1.8rem;
+}
+.ic-cor-gen-ins{
+    font-size: 2.8rem;
+    align-self: center;
+    justify-self: start;
+}
+
+.div-marcar-t{
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1.3rem;
+    color: rgb(67, 67, 67);
+    font-size: 1.3rem;
+    font-family: Roboto Flex;
+    margin: 2rem 0rem;
 }
 
 

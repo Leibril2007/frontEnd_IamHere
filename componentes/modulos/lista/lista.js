@@ -126,7 +126,9 @@ function cadaAlumno(nomAl){
             ventLlamar.remove();
         }
 
-        divBase.appendChild(ventEliminar());
+        let idAlumnoEliminar = nomAl.id;
+
+        divBase.appendChild(ventEliminar(idAlumnoEliminar));
         
     });
     

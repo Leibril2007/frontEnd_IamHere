@@ -25,7 +25,11 @@ function ventUniforme(idAlumno) {
         let observaciones = JSON.parse(localStorage.getItem("obsPorAlum")) || {};
         observaciones[idAlumno] = areaTexto.value.trim();
         localStorage.setItem("obsPorAlum", JSON.stringify(observaciones));
-        contenedor.remove();
+        
+        let msjGuardVent = document.createElement('p');
+        msjGuardVent.className = "msj-guard-vent";
+        msjGuardVent.textContent = "¡Guardado éxitosamente!";
+        contenedor.appendChild(msjGuardVent);
     };
 
     let btnEnviar = document.createElement('button');
@@ -75,7 +79,10 @@ function ventCorreo(idAlumno) {
             localStorage.setItem("correoPers", JSON.stringify(observaciones));
         }
 
-        contenedor.remove();
+        let msjGuardVent = document.createElement('p');
+        msjGuardVent.className = "msj-guard-vent";
+        msjGuardVent.textContent = "¡Guardado éxitosamente!";
+        contenedor.appendChild(msjGuardVent);
     };
 
     let btnEnviar = document.createElement('button');
@@ -89,7 +96,7 @@ function ventCorreo(idAlumno) {
 
 
 
-function ventEliminar() {
+function ventEliminar(idAlumnoEliminar) {
     let contenedor = document.createElement('div');
     contenedor.className = 'ventana';
 
@@ -103,7 +110,7 @@ function ventEliminar() {
     cerrar.onclick = ()=> contenedor.remove();
 
     let inputContra = document.createElement('input');
-    inputContra.type = 'password';
+/*     inputContra.type = 'password'; */
     inputContra.placeholder = 'Contraseña';
     inputContra.className = 'campo';
 
@@ -111,11 +118,55 @@ function ventEliminar() {
     btnConfirmar.textContent = 'confirmar';
     btnConfirmar.className = 'btn-mini';
 
-    let btnCancelar = document.createElement('button');
-    btnCancelar.textContent = 'regresar a la lista';
-    btnCancelar.className = 'btn-mini';
+    btnConfirmar.addEventListener('click', async function(){
 
-    contenedor.append(titulo, cerrar, inputContra, btnConfirmar, btnCancelar);
+        let valorInpContra = inputContra.value;
+        let alumnoAEliminar = idAlumnoEliminar;
+
+        console.log("contra", valorInpContra);
+
+        try{
+            const response = await fetch(`http://localhost:3000/eliminarAlumno`,{
+
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    passIng: valorInpContra,
+                    idAlumnoEl: alumnoAEliminar
+                })
+            });
+
+            const data = await response.json();
+
+            if(!response.ok){
+                let errorMsg = document.createElement('p');
+                errorMsg.className = "error";
+                errorMsg.textContent = data.message || "Error al eliminar alumno";
+                contenedor.appendChild(errorMsg);
+                return;
+            } else {
+                let msjGuardVent = document.createElement('p');
+                msjGuardVent.className = "msj-guard-vent";
+                msjGuardVent.textContent = "El alumno fue eliminado";
+                contenedor.appendChild(msjGuardVent);
+            }
+
+
+        } catch (error){
+            console.error("Error en el fetch:", error);
+            let errorMsg = document.createElement('p');
+            errorMsg.className = "error";
+            errorMsg.textContent = "No se pudo conectar al servidor";
+            contenedor.appendChild(errorMsg);
+        }
+
+
+
+    });
+
+    contenedor.append(titulo, cerrar, inputContra, btnConfirmar);
     return contenedor;
 }
 
@@ -166,16 +217,18 @@ function ventCorreoGen() {
             almacenarAvisoGeneral(observaciones, idGradoSel, idMaestro);
         }
 
-        contenedor.remove();
+        let msjGuardVent = document.createElement('p');
+        msjGuardVent.className = "msj-guard-vent";
+        msjGuardVent.textContent = "¡Guardado éxitosamente!";
+        contenedor.appendChild(msjGuardVent);
     
     };
-    contenedor.appendChild(btnGuardar);
 
     let btnEnviar = document.createElement('button');
     btnEnviar.textContent = 'Enviar correo';
     btnEnviar.className = 'btn-violeta';
 
-    contenedor.append(titulo, cerrar, areaTexto, btnEnviar);
+    contenedor.append(titulo, cerrar, areaTexto, btnEnviar, btnGuardar);
     return contenedor;
 }
 
