@@ -145,6 +145,12 @@ function cargarTablero(ngSel, idGradoSel){
     btnAgregar.className = "boton btn-agregar";
     btnAgregar.textContent = "Agregar alumno";
 
+    btnAgregar.addEventListener("click", function(){
+
+      window.location.href = "agregarAlumno.html";
+
+    });
+
     // Botón "Guardar asistencia"
     let btnGuardar = document.createElement('div');
     btnGuardar.className = "boton btn-guardar";
