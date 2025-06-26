@@ -1,9 +1,32 @@
+.div-tab-b{
+
+    display: grid;
+    grid-template-rows: 5rem 1fr;
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+
+}
+
+.msj-guard-asis{
+    grid-row: 1/2;
+    grid-column: 1/2;
+
+    align-self: self-end;
+    justify-self: center;
+
+    font-size: 2.3rem;
+    color: #36A200;
+    font-weight: 600;
+    font-family: Roboto Flex;
+}
+
 .sec-tab-dom{
     grid-row: 2/3;
     width: 100%;
 }
 
 .sec-tablero{
+    grid-row: 2/3;
     width: 100%;
     padding: 1rem;
 }

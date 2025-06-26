@@ -89,6 +89,43 @@ function ventCorreo(idAlumno) {
     btnEnviar.textContent = 'Enviar correo';
     btnEnviar.className = 'btn-violeta';
 
+    btnEnviar.addEventListener('click', async function(){
+
+        let alumId = idAlumno;
+        console.log("al id", alumId);
+        const texto = areaTexto.value.trim();
+
+        try {
+
+            let response = await fetch('http://localhost:3000/verificarCorreo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    idAlumnoRec: alumId,
+                    mensaje: texto
+                })
+            })
+            const data = await response.json();
+
+            if (data.success) {
+                alert("Correo enviado correctamente");
+            } else {
+                alert("Error al enviar el correo: " + (data.message || ""));
+            }
+            
+        } catch (error) {
+            console.error("Error en el fetch:", error);
+            let errorMsg = document.createElement('p');
+            errorMsg.className = "error";
+            errorMsg.textContent = "No se pudo conectar al servidor";
+            contenedor.appendChild(errorMsg);
+        }
+
+    });
+
+
     contenedor.append(titulo, cerrar, areaTexto, btnGuardar, btnEnviar);
     return contenedor;
 }
