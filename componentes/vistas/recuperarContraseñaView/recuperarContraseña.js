@@ -32,13 +32,9 @@ function cargarRecuperar(){
 
     let tituloBienvenida = document.createElement('h1');
     tituloBienvenida.className = "titulo-bienvenida";
-    tituloBienvenida.textContent = "Ingrese se correo";
+    tituloBienvenida.textContent = "Ingrese su correo";
     formularioLogin.appendChild(tituloBienvenida);
 
-    let tituloLogin = document.createElement('h1');
-    tituloLogin.className = "titulo-login";
-    tituloLogin.textContent = "Login";
-    formularioLogin.appendChild(tituloLogin);
 
     let inputUsuarioEmail = document.createElement('input');
     inputUsuarioEmail.className = "input input-user-email";
@@ -52,28 +48,71 @@ function cargarRecuperar(){
 
 
     let botonRecuperar = document.createElement('div');
-    botonRecuperar.className = "boton boton-recuperar";
+    botonRecuperar.className = "boton boton-ingresar";
     botonRecuperar.textContent = "Recuperar contraseña";
     formularioLogin.appendChild(botonRecuperar);
 
 
-    botonRecuperar.addEventListener("click", function(){
-        /* window.location.href = "recuperarContraseña.html"; */
-        if(!seccionLogin.classList.contains("ocultar")){
-            seccionLogin.classList.add("ocultar");
+    botonRecuperar.addEventListener("click", async function(){
+        
+        let corIng = inputUsuarioEmail.value;
+
+        localStorage.setItem("almCorreoIng", corIng);
+
+        console.log("correo ing", corIng);
+
+        try {
+            
+            const response = await fetch('http://localhost:3000/enviarCodigo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    correo: corIng
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+
+                let errorMsg = document.createElement('p');
+                errorMsg.className = "error";
+                errorMsg.textContent = data.message || "Correo incorrecto";
+                formularioLogin.appendChild(errorMsg);
+                return;
+                
+              } else {
+
+                  if(!seccionLogin.classList.contains("ocultar")){
+                    seccionLogin.classList.add("ocultar");
+                }
+              }
+
+
+        } catch (error) {
+            console.error("Error en el fetch:", error);
+            let errorMsg = document.createElement('p');
+            errorMsg.className = "error";
+            errorMsg.textContent = "No se pudo conectar al servidor";
+            formularioLogin.appendChild(errorMsg);
         }
+
+
+
 
         llamarRecuperar.appendChild(cargarVCodigo());
     });
 
     let botonIngresar = document.createElement('div');
-    botonIngresar.className = "boton boton-ingresar";
+    botonIngresar.className = "boton boton-recuperar";
     botonIngresar.textContent = "Regresar al login";
 
     /* FUNCION INGRESAR */
 
     botonIngresar.addEventListener("click", function(){
-        window.location.href = "asistencia.html";
+        window.location.href = "login.html";
     });
 
 
