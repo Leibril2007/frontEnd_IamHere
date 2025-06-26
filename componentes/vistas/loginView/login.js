@@ -49,7 +49,7 @@ function cargarLogin(){
 
     let botonRecuperar = document.createElement('div');
     botonRecuperar.className = "boton boton-recuperar";
-    botonRecuperar.textContent = "Recuperar correo";
+    botonRecuperar.textContent = "Recuperar contraseña";
     formularioLogin.appendChild(botonRecuperar);
 
     botonRecuperar.addEventListener("click", function(){

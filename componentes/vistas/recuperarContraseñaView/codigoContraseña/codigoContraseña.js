@@ -1,4 +1,3 @@
-/* let loginPage = document.querySelector('#codigoContaseña'); */
 import { cargarCambio } from "../cambiarContraseña/cambiarContraseña.js";
 let rec = document.querySelector('#recuperarContraseñaB');
 
@@ -44,11 +43,6 @@ function cargarVCodigo(){
     inputUsuarioEmail.placeholder = "Codigo";
     formularioLogin.appendChild(inputUsuarioEmail);
 
-/* 
-    botonRecuperar.addEventListener("click", function(){
-        window.location.href = "recuperarContraseña.html";
-    }); */
-
 
     let botonIngresar = document.createElement('div');
     botonIngresar.className = "boton boton-ingresar";
@@ -56,10 +50,52 @@ function cargarVCodigo(){
 
     /* FUNCION INGRESAR */
 
-    botonIngresar.addEventListener("click", function(){
-        if(!seccionLogin.classList.contains("ocultar")){
-            seccionLogin.classList.add("ocultar");
+    botonIngresar.addEventListener("click", async function(){
+
+        let codIng = inputUsuarioEmail.value;
+
+        localStorage.setItem("codIng", codIng);
+
+        const almCorreoIng = localStorage.getItem("almCorreoIng");
+
+        try {
+            const response = await fetch('http://localhost:3000/verificarCodigo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    correo: almCorreoIng, 
+                    codigoIng: codIng 
+                })
+            })
+
+            const data = await response.json();
+
+            if (!response.ok) {
+
+                let errorMsg = document.createElement('p');
+                errorMsg.className = "error";
+                errorMsg.textContent = data.message || "Código incorrecto";
+                formularioLogin.appendChild(errorMsg);
+                return;
+                
+              } else {
+
+                if(!seccionLogin.classList.contains("ocultar")){
+                    seccionLogin.classList.add("ocultar");
+                }
+              }
+
+
+        } catch (error) {
+            console.error("Error en el fetch:", error);
+            let errorMsg = document.createElement('p');
+            errorMsg.className = "error";
+            errorMsg.textContent = "No se pudo conectar al servidor";
+            formularioLogin.appendChild(errorMsg);
         }
+
 
         rec.appendChild(cargarCambio());
     });
@@ -75,8 +111,6 @@ function cargarVCodigo(){
     return seccionLogin;
 
 }
-/* rec.appendChild(cargarVCodigo()); */
 
-/* loginPage.appendChild(cargarVCodigo()); */
 
 export { cargarVCodigo };
