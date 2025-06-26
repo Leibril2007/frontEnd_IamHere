@@ -55,7 +55,7 @@ function cargarCambio(){
 
     let botonIngresar = document.createElement('div');
     botonIngresar.className = "boton boton-ingresar";
-    botonIngresar.textContent = "Guadar";
+    botonIngresar.textContent = "Guardar";
 
     /* FUNCION INGRESAR */
 
