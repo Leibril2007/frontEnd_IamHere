@@ -158,13 +158,15 @@ function cargarTablero(ngSel, idGradoSel){
 
     btnGuardar.addEventListener("click", async function() {
 
-      const idMaestro = localStorage.getItem("idMaestro");
+        const idMaestro = localStorage.getItem("idMaestro");
         const idGradoSel = localStorage.getItem("idGradoSel");
         const recFecha = localStorage.getItem("recFecha");
-        const correoPers = localStorage.getItem("correoPers");
+        const correoPers = JSON.parse(localStorage.getItem("correoPers")) || {};
         const obsPorAlumno = JSON.parse(localStorage.getItem("obsPorAlum")) || {};
         const asistencias = JSON.parse(localStorage.getItem("asistencias")) || {};
         
+        console.log(correoPers);
+
         const alumnos = await alumnosBd();
         const alumnosDelGrado = alumnos.filter(alumno => alumno.grados_id == idGradoSel);
 
@@ -182,7 +184,7 @@ function cargarTablero(ngSel, idGradoSel){
                     delete obsPorAlumno[idAlumno];
                 }
                 
-                await agregarAsis(idMaestro, idGradoSel, idAlumno, recFecha, estado, correoPers, uniforme_id);
+                await agregarAsis(idMaestro, idGradoSel, idAlumno, recFecha, estado, correoPers[idAlumno]?.trim() || null, uniforme_id);
 
                 delete asistencias[idAlumno];
             }
