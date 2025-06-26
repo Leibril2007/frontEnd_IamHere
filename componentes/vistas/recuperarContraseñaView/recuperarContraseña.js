@@ -61,6 +61,11 @@ function cargarRecuperar(){
 
         console.log("correo ing", corIng);
 
+        const errorExistente = formularioLogin.querySelector(".error");
+        if (errorExistente) {
+          errorExistente.remove();
+        }
+
         try {
             
             const response = await fetch('http://localhost:3000/enviarCodigo', {
