@@ -172,6 +172,7 @@ function cargarTablero(ngSel, idGradoSel){
 
         for (const alumno of alumnosDelGrado) {
             const idAlumno = alumno.id;
+            localStorage("idAlumno", idAlumno);
             const estado = asistencias[idAlumno] || "ausente"; 
             
             if (asistencias.hasOwnProperty(idAlumno) || obsPorAlumno.hasOwnProperty(idAlumno)) {

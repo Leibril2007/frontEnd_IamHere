@@ -18,7 +18,20 @@ function agregarAsis(idMaestro,idGrado,idAlumno,recFecha,recAsistencia,correoPer
         })
     })
     .then(res => res.json())
-    .then(data => console.log("Asistencia registrada:", data))
+    .then(data => {
+        console.log("Asistencia registrada:", data);
+
+        let llamarNvGrado = document.querySelector('.div-tab-b');
+
+        let msjGuardAsis = document.createElement('p');
+        msjGuardAsis.className = "msj-guard-asis";
+        msjGuardAsis.textContent = "¡Asistencia Guardada!";
+        llamarNvGrado.appendChild(msjGuardAsis);
+
+
+        }
+
+    )
     .catch(err => console.error("Error al registrar:", err));
 }
 

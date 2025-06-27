@@ -39,7 +39,7 @@ async function cargarGrados(id) {
 
     try {
       const response = await fetch(`http://localhost:3000/profesor/${idEnt}/nivel`); 
-      console.log("Respuesta del servidor:", response);
+/*       console.log("Respuesta del servidor:", response); */
 
       if (!response.ok) throw new Error('Error en la respuesta del servidor');
   
