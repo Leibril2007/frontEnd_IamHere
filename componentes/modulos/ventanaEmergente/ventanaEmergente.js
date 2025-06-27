@@ -36,6 +36,40 @@ function ventUniforme(idAlumno) {
     btnEnviar.textContent = 'Enviar correo';
     btnEnviar.className = 'btn-amarillo';
 
+    btnEnviar.onclick = async () => {
+
+        const texto = areaTexto.value.trim();
+
+        try {
+        
+            let response = await fetch('http://localhost:3000/correoPorUniforme ', {
+
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    idAlumnoRec: idAlumno,
+                    mensaje: texto
+                })
+
+                
+            });
+
+            const data = await response.json();
+        
+            if (data.success) {
+                alert("Correos enviados correctamente.");
+            } else {
+                alert("Error al enviar: " + data.message);
+            }
+
+
+        } catch (error) {
+            alert("error en servidor de uniforme", error);
+        }
+    } 
+
     contenedor.append(cerrar, titulo, areaTexto, btnGuardar, btnEnviar);
     return contenedor;
 }
@@ -254,6 +288,42 @@ function ventCorreoGen() {
 
             almacenarAvisoGeneral(observaciones, idGradoSel, idMaestro);
 
+
+        }
+
+        let msjGuardVent = document.createElement('p');
+        msjGuardVent.className = "msj-guard-vent";
+        msjGuardVent.textContent = "¡Guardado éxitosamente!";
+        contenedor.appendChild(msjGuardVent);
+    
+    };
+
+    let btnEnviar = document.createElement('button');
+    btnEnviar.textContent = 'Enviar correo';
+    btnEnviar.className = 'btn-violeta';
+
+    btnEnviar.onclick = async  () => {
+        const texto = areaTexto.value.trim();
+
+        let observaciones = {};
+        const dataRaw = localStorage.getItem("correoGen");
+        if (dataRaw) {
+            try {
+                observaciones = JSON.parse(dataRaw);
+            } catch (e) {
+                console.error("Error al parsear correoPers:", e);
+            }
+        }
+
+        if (texto !== "") {
+            observaciones = texto;
+            localStorage.setItem("correoGen", JSON.stringify(observaciones));
+
+            const idMaestro = localStorage.getItem("idMaestro");
+            const idGradoSel = localStorage.getItem("idGradoSel");
+
+            almacenarAvisoGeneral(observaciones, idGradoSel, idMaestro);
+
             try {
                 const response = await fetch("http://localhost:3000/correoGeneral", {
                     method: "POST",
@@ -277,20 +347,9 @@ function ventCorreoGen() {
                 console.error("Error al enviar correo general:", error);
                 alert("No se pudo conectar al servidor.");
             }
+        }    
 
-
-        }
-
-        let msjGuardVent = document.createElement('p');
-        msjGuardVent.className = "msj-guard-vent";
-        msjGuardVent.textContent = "¡Guardado éxitosamente!";
-        contenedor.appendChild(msjGuardVent);
-    
-    };
-
-    let btnEnviar = document.createElement('button');
-    btnEnviar.textContent = 'Enviar correo';
-    btnEnviar.className = 'btn-violeta';
+    }
 
     contenedor.append(titulo, cerrar, areaTexto, btnEnviar, btnGuardar);
     return contenedor;
