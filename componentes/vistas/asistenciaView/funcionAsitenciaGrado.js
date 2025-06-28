@@ -1,13 +1,13 @@
 function mostrarMsjAsis() {
     let llamarNvGrado = document.querySelector('.div-tab-b');
 
-    let yaExiste = llamarNvGrado.querySelector('.msj-guard-asis');
+    let yaExiste = llamarNvGrado?.querySelector('.msj-guard-asis');
     if (yaExiste) yaExiste.remove();
 
     let msjGuardAsis = document.createElement('p');
     msjGuardAsis.className = "msj-guard-asis";
     msjGuardAsis.textContent = "¡Asistencia Guardada!";
-    llamarNvGrado.appendChild(msjGuardAsis);
+    llamarNvGrado?.appendChild(msjGuardAsis);
 }
 
 function cambiarGradoSel(idGradoSelNuevo) {
@@ -22,5 +22,19 @@ function cambiarGradoSel(idGradoSelNuevo) {
         if (mensaje) mensaje.remove(); 
     }
 }
+
+function msjActualAsis() {
+    let llamarNvGrado = document.querySelector('.div-tab-b');
+
+    let yaExiste = llamarNvGrado?.querySelector('.msj-guard-asis');
+    if (yaExiste) yaExiste.remove();
+
+    let msjGuardAsis = document.createElement('p');
+    msjGuardAsis.className = "msj-guard-asis";
+    msjGuardAsis.textContent = "¡Asistencia Actualizada!";
+    llamarNvGrado?.appendChild(msjGuardAsis);
+}
+
+
 
 export { mostrarMsjAsis, cambiarGradoSel }

@@ -1,7 +1,7 @@
 import { cadaAlumno } from "../../modulos/lista/lista.js";
 import { alumnosBd } from "../../conexiones/conexiones.js";
 import { todosAusentes, todosPresentes } from "./funcionAsistencia.js";
-import { agregarAsis, agregarUniforme } from "../../conexiones/enviarDatos.js";
+import { agregarAsis, agregarUniforme, actualizarAsis } from "../../conexiones/enviarDatos.js";
 import { ventCorreoGen } from "../../modulos/ventanaEmergente/ventanaEmergente.js";
 import { asistenciaGrado } from "../../conexiones/enviarDatos.js";
 
@@ -215,6 +215,55 @@ function cargarTablero(ngSel, idGradoSel){
     let btnActualizar = document.createElement('div');
     btnActualizar.className = "boton btn-guardar";
     btnActualizar.textContent = "Actualizar asistencia";
+
+    btnActualizar.addEventListener("click", async function(){
+
+      const idMaestro = localStorage.getItem("idMaestro");
+      const idGradoSel = localStorage.getItem("idGradoSel");
+      const recFecha = localStorage.getItem("recFecha");
+      const correoPersRaw = localStorage.getItem("correoPers");
+      const correoPers = correoPersRaw ? JSON.parse(correoPersRaw) : {};
+      const obsPorAlumno = JSON.parse(localStorage.getItem("obsPorAlum")) || {};
+      const asistencias = JSON.parse(localStorage.getItem("asistencias")) || {};
+      
+      const alumnos = await alumnosBd();
+      const alumnosDelGrado = alumnos.filter(alumno => alumno.grados_id == idGradoSel);
+
+      let seGuardoAsis = false;
+
+      for (const alumno of alumnosDelGrado) {
+          const idAlumno = alumno.id;
+          localStorage.setItem("idAlumno", idAlumno);
+          const estado = asistencias[idAlumno] || "ausente"; 
+          
+          if (asistencias.hasOwnProperty(idAlumno) || obsPorAlumno.hasOwnProperty(idAlumno)) {
+              const observacionUniforme = obsPorAlumno[idAlumno]?.trim();
+              let uniforme_id = null;
+              
+              if (observacionUniforme) {
+                  uniforme_id = await agregarUniforme(observacionUniforme, idAlumno);
+
+                  delete obsPorAlumno[idAlumno];
+              }
+              
+              await actualizarAsis(idMaestro, idGradoSel, idAlumno, recFecha, estado, correoPers[idAlumno]?.trim() || null, uniforme_id);
+
+              delete asistencias[idAlumno];
+
+              seGuardoAsis = true;
+          }
+      }
+
+      if( seGuardoAsis ){
+          asistenciaGrado(idGradoSel, "true", recFecha, idMaestro);
+      }
+
+      localStorage.setItem("asistencias", JSON.stringify(asistencias));
+      localStorage.setItem("obsPorAlum", JSON.stringify(obsPorAlumno));
+      
+      localStorage.removeItem("idAlumnosMarcados");
+
+    })
 
 
     sectionTablero.appendChild(btnAgregar);
