@@ -63,7 +63,7 @@ function cadaAlumno(nomAl){
         const obsPorAlumno = JSON.parse(localStorage.getItem("obsPorAlum")) || {};
         const valorObsUni = obsPorAlumno[idAlumno] || null;
 
-        const correoPers = JSON.parse(localStorage.getItem("msjCorPer"));
+        const correoPers = JSON.parse(localStorage.getItem("msjCorPer")) || {};
         const valorMsjCP = correoPers[idAlumno] || null;
     
         agregarAsis(idMaestro, idGradoSel, idAlumno, recFecha, recAsistencia, valorMsjCP, recUniAlum);

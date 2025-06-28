@@ -1,6 +1,6 @@
 import { conexionAs } from "../../vistas/asistenciaView/asistencia.js";
 import { añadirTablero } from "../../vistas/asistenciaView/asistencia.js";
-import { agregarAsis } from "../../conexiones/enviarDatos.js";
+import { cambiarGradoSel } from "../../vistas/asistenciaView/funcionAsitenciaGrado.js";
 
 function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
 
@@ -59,6 +59,7 @@ function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
         localStorage.setItem("idGradoSel", idGradoSel);
 
         let tabAnt = document.querySelector('.sec-tablero');
+        cambiarGradoSel(idGradoSel);
         
         if(tabAnt){
             tabAnt.remove();
@@ -83,8 +84,16 @@ function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
     fechaInp.type = "date";
     navPag.appendChild(fechaInp);
 
+    localStorage.removeItem("recFecha");
+
     fechaInp.addEventListener("change", function() {
         localStorage.setItem("recFecha", fechaInp.value);
+
+        if (!recFecha) {
+            alert("Por favor, selecciona una fecha antes de guardar la asistencia.");
+            return;
+        }
+
     });
 
     let btnProyeccionProf = document.createElement('div');

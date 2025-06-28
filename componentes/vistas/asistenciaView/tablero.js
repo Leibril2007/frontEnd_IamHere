@@ -3,6 +3,7 @@ import { alumnosBd } from "../../conexiones/conexiones.js";
 import { todosAusentes, todosPresentes } from "./funcionAsistencia.js";
 import { agregarAsis, agregarUniforme } from "../../conexiones/enviarDatos.js";
 import { ventCorreoGen } from "../../modulos/ventanaEmergente/ventanaEmergente.js";
+import { asistenciaGrado } from "../../conexiones/enviarDatos.js";
 
 function cargarTablero(ngSel, idGradoSel){
     let sectionTablero = document.createElement('section');
@@ -161,7 +162,8 @@ function cargarTablero(ngSel, idGradoSel){
         const idMaestro = localStorage.getItem("idMaestro");
         const idGradoSel = localStorage.getItem("idGradoSel");
         const recFecha = localStorage.getItem("recFecha");
-        const correoPers = JSON.parse(localStorage.getItem("correoPers")) || {};
+        const correoPersRaw = localStorage.getItem("correoPers");
+        const correoPers = correoPersRaw ? JSON.parse(correoPersRaw) : {};
         const obsPorAlumno = JSON.parse(localStorage.getItem("obsPorAlum")) || {};
         const asistencias = JSON.parse(localStorage.getItem("asistencias")) || {};
         
@@ -170,9 +172,11 @@ function cargarTablero(ngSel, idGradoSel){
         const alumnos = await alumnosBd();
         const alumnosDelGrado = alumnos.filter(alumno => alumno.grados_id == idGradoSel);
 
+        let seGuardoAsis = false;
+
         for (const alumno of alumnosDelGrado) {
             const idAlumno = alumno.id;
-            localStorage("idAlumno", idAlumno);
+            localStorage.setItem("idAlumno", idAlumno);
             const estado = asistencias[idAlumno] || "ausente"; 
             
             if (asistencias.hasOwnProperty(idAlumno) || obsPorAlumno.hasOwnProperty(idAlumno)) {
@@ -187,8 +191,16 @@ function cargarTablero(ngSel, idGradoSel){
                 
                 await agregarAsis(idMaestro, idGradoSel, idAlumno, recFecha, estado, correoPers[idAlumno]?.trim() || null, uniforme_id);
 
+                /* LA AGREGO AQUI? */
+
                 delete asistencias[idAlumno];
+
+                seGuardoAsis = true;
             }
+        }
+
+        if( seGuardoAsis ){
+            asistenciaGrado(idGradoSel, "true", recFecha, idMaestro);
         }
 
         localStorage.setItem("asistencias", JSON.stringify(asistencias));
