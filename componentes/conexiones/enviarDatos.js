@@ -1,3 +1,4 @@
+import { mostrarMsjAsis } from "../vistas/asistenciaView/funcionAsitenciaGrado.js";
 function agregarAsis(idMaestro,idGrado,idAlumno,recFecha,recAsistencia,correoPers,recUniAlum) {
     
     console.log("ID DEL MAESTRO QUE LLEGO: ",idMaestro);
@@ -20,14 +21,14 @@ function agregarAsis(idMaestro,idGrado,idAlumno,recFecha,recAsistencia,correoPer
     .then(res => res.json())
     .then(data => {
         console.log("Asistencia registrada:", data);
-
+/* 
         let llamarNvGrado = document.querySelector('.div-tab-b');
 
         let msjGuardAsis = document.createElement('p');
         msjGuardAsis.className = "msj-guard-asis";
         msjGuardAsis.textContent = "¡Asistencia Guardada!";
         llamarNvGrado.appendChild(msjGuardAsis);
-
+ */
 
         }
 
@@ -49,7 +50,7 @@ function agregarUniforme(observaciones, alumnos_id) {
     .then(res => res.json())
     .then(data => {
         console.log("Uniforme registrado:", data);
-        return data.id; // ID del uniforme
+        return data.id; 
     })
     .catch(err => {
         console.error("Error al registrar uniforme:", err);
@@ -57,6 +58,37 @@ function agregarUniforme(observaciones, alumnos_id) {
     });
 }
 
+
+function asistenciaGrado(idGradoSel, asistencia, recFecha, idMaestro){
+
+    fetch("http://localhost:3000/asistenciaDeGrado", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            grado_id: idGradoSel,
+            estado: asistencia,
+            fecha: recFecha,
+            idUser: idMaestro
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("Asistencia registrada:", data);
+
+        let asisTomadaGrado = JSON.parse(localStorage.getItem("gradosConAsistencia")) || [];
+        if (!asisTomadaGrado.includes(idGradoSel)) {
+            asisTomadaGrado.push(idGradoSel);
+            localStorage.setItem("gradosConAsistencia", JSON.stringify(asisTomadaGrado));
+        }
+
+        mostrarMsjAsis();
+    }
+    )
+    .catch(err => console.error("Error al registrar:", err));
+
+}
 
 function almacenarAvisoGeneral(correoGen, idGrado, idMaestro){
     
@@ -87,5 +119,5 @@ function almacenarAvisoGeneral(correoGen, idGrado, idMaestro){
 
 
 
-export { agregarAsis, agregarUniforme, almacenarAvisoGeneral };
+export { agregarAsis, agregarUniforme, almacenarAvisoGeneral, asistenciaGrado };
 
