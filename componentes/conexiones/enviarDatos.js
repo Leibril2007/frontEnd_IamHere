@@ -9,7 +9,6 @@ function agregarAsis(idMaestro,idGrado,idAlumno,recFecha,recAsistencia,correoPer
       correo_personal: correoPers || null,
     };
     
-    // Solo agrega `uniforme_id` si está presente y válido
     if (typeof recUniAlum === 'number' && !isNaN(recUniAlum)) {
       datosAsistencia.uniforme_id = recUniAlum;
     }
@@ -24,6 +23,8 @@ function agregarAsis(idMaestro,idGrado,idAlumno,recFecha,recAsistencia,correoPer
 
     .catch(err => console.error("Error al registrar:", err));
 }
+
+
 
 function agregarUniforme(observaciones, alumnos_id) {
     return fetch("http://localhost:3000/uniforme", {

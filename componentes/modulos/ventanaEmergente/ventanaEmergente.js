@@ -98,24 +98,18 @@ function ventCorreo(idAlumno) {
 
     btnGuardar.onclick = () => {
         let observaciones = {};
-        const dataRaw = localStorage.getItem("correoPers");
-        if (dataRaw) {
-            try {
-                observaciones = JSON.parse(dataRaw);
-            } catch (e) {
-                console.error("Error al parsear correoPers:", e);
-            }
-        }
 
         const texto = areaTexto.value.trim();
         if (texto !== "") {
             observaciones[idAlumno] = texto;
             localStorage.setItem("correoPers", JSON.stringify(observaciones));
+        } else {
+            delete observaciones[idAlumno];
         }
 
         let msjGuardVent = document.createElement('p');
         msjGuardVent.className = "msj-guard-vent";
-        msjGuardVent.textContent = "¡Guardado éxitosamente!";
+        msjGuardVent.textContent = "¡Guardado exitosamente!";
         contenedor.appendChild(msjGuardVent);
     };
 

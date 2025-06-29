@@ -179,7 +179,7 @@ function cargarTablero(ngSel, idGradoSel){
             localStorage.setItem("idAlumno", idAlumno);
             const estado = asistencias[idAlumno] || "ausente"; 
             
-            if (asistencias.hasOwnProperty(idAlumno) || obsPorAlumno.hasOwnProperty(idAlumno)) {
+            if (asistencias.hasOwnProperty(idAlumno) || obsPorAlumno.hasOwnProperty(idAlumno) || correoPers.hasOwnProperty(idAlumno)) {
                 const observacionUniforme = obsPorAlumno[idAlumno]?.trim();
                 let uniforme_id = null;
                 
@@ -188,12 +188,16 @@ function cargarTablero(ngSel, idGradoSel){
 
                     delete obsPorAlumno[idAlumno];
                 }
+
+                let correoPersVacioOLleno = correoPers[idAlumno]?.trim() || null;
                 
-                await agregarAsis(idMaestro, idGradoSel, idAlumno, recFecha, estado, correoPers[idAlumno]?.trim() || null, uniforme_id);
+                await agregarAsis(idMaestro, idGradoSel, idAlumno, recFecha, estado, correoPersVacioOLleno, uniforme_id);
 
                 /* LA AGREGO AQUI? */
 
                 delete asistencias[idAlumno];
+                delete correoPers[idAlumno];
+                localStorage.setItem("correoPers", JSON.stringify(correoPers));
 
                 seGuardoAsis = true;
             }
