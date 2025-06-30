@@ -28,7 +28,7 @@ function cadaAlumno(nomAl){
     
     /* CHECKBOX */
     let inpSi = document.createElement('div');
-    inpSi.className = "inp-check check-si";
+    inpSi.className = "inp-check-au inp-check-pres inp-check check-si";
     inpSi.dataset.idAlumno = nomAl.id;
     inpSi.addEventListener("click", function () {
         

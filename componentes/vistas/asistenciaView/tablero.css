@@ -126,6 +126,7 @@
     font-size: 2.8rem;
     align-self: center;
     justify-self: start;
+    cursor: pointer;
 }
 
 .div-marcar-t{
@@ -138,6 +139,16 @@
     margin: 2rem 0rem;
 }
 
+
+.base-btn-tab{
+    margin-top: 4rem;
+    display: flex;
+    
+    gap: 3.5rem;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
 
 .boton {
     width: 100%;
@@ -152,12 +163,18 @@
 
 
 .btn-agregar{
-    margin-top: 3rem;
+    margin-top: 1rem;
     align-self: center;
     justify-self: center;
     color: #005DAC;
     font-weight: 600;
     font-family: Roboto Flex;
+    background-color: white;
+}
+.btn-agregar:hover{
+    background-color: #0c6dc2;
+    color: aliceblue;
+    transition: 0.3s;
 }
 
 .btn-guardar{
@@ -173,5 +190,6 @@
 
 .btn-guardar:hover {
     background: linear-gradient(to right, #86fde8, #acb6e5);
-    transition: 5s;
+    /* transition: 5s; */
+    transition: 0.3s;
 }

@@ -1,4 +1,4 @@
-import { mostrarMsjAsis } from "../vistas/asistenciaView/funcionAsitenciaGrado.js";
+import { mostrarMsjAsis, msjActualAsis } from "../vistas/asistenciaView/funcionAsitenciaGrado.js";
 function agregarAsis(idMaestro,idGrado,idAlumno,recFecha,recAsistencia,correoPers,recUniAlum) {
       const datosAsistencia = {
       usuarios_id: idMaestro,
@@ -80,6 +80,38 @@ function asistenciaGrado(idGradoSel, asistencia, recFecha, idMaestro){
 
 }
 
+function asisGradoActualizar(idGradoSel, asistencia, recFecha, idMaestro){
+
+    fetch("http://localhost:3000/asistenciaDeGrado", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            grado_id: idGradoSel,
+            estado: asistencia,
+            fecha: recFecha,
+            idUser: idMaestro
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("Asistencia registrada:", data);
+
+        let asisTomadaGrado = JSON.parse(localStorage.getItem("gradosConAsistencia")) || [];
+        if (!asisTomadaGrado.includes(idGradoSel)) {
+            asisTomadaGrado.push(idGradoSel);
+            localStorage.setItem("gradosConAsistencia", JSON.stringify(asisTomadaGrado));
+        }
+
+        msjActualAsis();
+    }
+    )
+    .catch(err => console.error("Error al registrar:", err));
+
+}
+
+
 function almacenarAvisoGeneral(correoGen, idGrado, idMaestro){
     
     console.log("AVISO: ", correoGen, idGrado, idMaestro);
@@ -126,7 +158,7 @@ function actualizarAsis(idMaestro,idGrado,idAlumno,recFecha,recAsistencia,correo
     .then(data => {
         console.log("Asistencia registrada:", data);
 
-        }
+    }
 
     )
     .catch(err => console.error("Error al registrar:", err));
@@ -134,5 +166,5 @@ function actualizarAsis(idMaestro,idGrado,idAlumno,recFecha,recAsistencia,correo
 
 
 
-export { agregarAsis, agregarUniforme, almacenarAvisoGeneral, asistenciaGrado, actualizarAsis };
+export { agregarAsis, agregarUniforme, almacenarAvisoGeneral, asistenciaGrado, actualizarAsis, asisGradoActualizar};
 

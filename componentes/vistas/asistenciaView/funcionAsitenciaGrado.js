@@ -35,6 +35,18 @@ function msjActualAsis() {
     llamarNvGrado?.appendChild(msjGuardAsis);
 }
 
+function cambiarGradoSelAct(idGradoSelNuevo) {
+    let gradosConAsistencia = JSON.parse(localStorage.getItem("gradosConAsistencia")) || [];
+    let mensaje = document.querySelector('.msj-guard-asis');
+
+    if (gradosConAsistencia.includes(idGradoSelNuevo)) {
+        if (!mensaje) {
+            msjActualAsis(); 
+        }
+    } else {
+        if (mensaje) mensaje.remove(); 
+    }
+}
 
 
-export { mostrarMsjAsis, cambiarGradoSel }
+export { mostrarMsjAsis, cambiarGradoSel, cambiarGradoSelAct, msjActualAsis }

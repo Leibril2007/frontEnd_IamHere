@@ -1,0 +1,42 @@
+@media (max-width: 835px) {
+
+    .base-btn-tab{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 0rem;
+    }
+
+    .boton {
+        width: 100%;
+        max-width: 30rem;
+        font-size: 1.7rem;
+        height: 3.5rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .btn-agregar{
+        margin-top: 3rem;
+        align-self: center;
+        justify-self: center;
+        color: #005DAC;
+        font-weight: 600;
+        font-family: Roboto Flex;
+    }
+
+    .btn-guardar{
+    /*         margin-top: 1rem; */
+
+        background-color: #F57E25;
+        font-size: 1.6rem;
+        color: white;
+        font-family: Lemon;
+        align-self: center;
+        justify-self: center;
+    }
+
+}

@@ -48,9 +48,28 @@
 }
 
 .inp-check{
+    cursor: pointer;
     width: 3rem;
     height: 3rem;
     background-color: #92D1F5;
+}
+.inp-check-2do{
+    cursor: pointer;
+    width: 3rem;
+    height: 3rem;
+}
+.inp-check-au{
+    cursor: pointer;
+    width: 3rem;
+    height: 3rem;
+    background-color: #92D1F5;
+}
+.inp-check-pres{
+    cursor: pointer;
+    width: 3rem;
+    height: 3rem;
+    background-color: #92D1F5;
+
 }
 
 .presente{
@@ -62,5 +81,6 @@
 
 .btnCAlum{
     font-size: 2.4rem;
+    cursor: pointer;
 }
 

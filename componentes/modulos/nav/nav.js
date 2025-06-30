@@ -1,6 +1,6 @@
 import { conexionAs } from "../../vistas/asistenciaView/asistencia.js";
 import { añadirTablero } from "../../vistas/asistenciaView/asistencia.js";
-import { cambiarGradoSel } from "../../vistas/asistenciaView/funcionAsitenciaGrado.js";
+import { cambiarGradoSel, cambiarGradoSelAct } from "../../vistas/asistenciaView/funcionAsitenciaGrado.js";
 
 function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
 
@@ -60,6 +60,7 @@ function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
 
         let tabAnt = document.querySelector('.sec-tablero');
         cambiarGradoSel(idGradoSel);
+        cambiarGradoSelAct(idGradoSel);
         
         if(tabAnt){
             tabAnt.remove();
