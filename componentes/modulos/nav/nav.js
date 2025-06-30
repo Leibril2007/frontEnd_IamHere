@@ -1,6 +1,6 @@
 import { conexionAs } from "../../vistas/asistenciaView/asistencia.js";
 import { añadirTablero } from "../../vistas/asistenciaView/asistencia.js";
-import { cambiarGradoSel } from "../../vistas/asistenciaView/funcionAsitenciaGrado.js";
+import { cambiarGradoSel, cambiarGradoSelAct } from "../../vistas/asistenciaView/funcionAsitenciaGrado.js";
 
 function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
 
@@ -60,6 +60,7 @@ function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
 
         let tabAnt = document.querySelector('.sec-tablero');
         cambiarGradoSel(idGradoSel);
+        cambiarGradoSelAct(idGradoSel);
         
         if(tabAnt){
             tabAnt.remove();
@@ -82,20 +83,28 @@ function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
     let fechaInp = document.createElement('input');
     fechaInp.className = "fecha-inp";
     fechaInp.type = "date";
+    fechaInp.value = new Date().toISOString().split('T')[0];
+    localStorage.setItem("recFecha", fechaInp.value);
     navPag.appendChild(fechaInp);
 
-    localStorage.removeItem("recFecha");
+    /* localStorage.removeItem("recFecha"); */
 
     fechaInp.addEventListener("change", function() {
         localStorage.setItem("recFecha", fechaInp.value);
-
-        if (!recFecha) {
-            alert("Por favor, selecciona una fecha antes de guardar la asistencia.");
-            return;
-        }
-
     });
 
+
+/*     let horaInp = document.createElement('input');
+    horaInp.className = "hora-inp";
+    horaInp.type = "time";
+
+    let ahora = new Date();
+    let horas = String(ahora.getHours()).padStart(2, '0');
+    let minutos = String(ahora.getMinutes()).padStart(2, '0');
+    horaInp.value = `${horas}:${minutos}`;
+
+    navPag.appendChild(horaInp);
+ */
     let btnProyeccionProf = document.createElement('div');
     btnProyeccionProf.className = "btn-proyeccion-prof";
     btnProyeccionProf.textContent = "Proyección";

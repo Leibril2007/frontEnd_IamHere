@@ -13,7 +13,9 @@
 }
 
 .titulosNav{
-    font-size: 1.6rem;
+    /* font-size: 1.6rem; */
+    font-size: 2rem;
+    font-weight: 400;
     color: #824100;
     text-align: end;
 }
@@ -44,7 +46,9 @@
 
 .datosUEGNav{
     font-family: "Orelega One", serif;
-    font-size: 1.3rem;
+    /* font-size: 1.3rem; */
+    font-size: 1.8rem;
+    font-weight: 400;
     color: #000CB6;
 }
 

@@ -1,40 +1,30 @@
-import { mostrarMsjAsis } from "../vistas/asistenciaView/funcionAsitenciaGrado.js";
+import { mostrarMsjAsis, msjActualAsis } from "../vistas/asistenciaView/funcionAsitenciaGrado.js";
 function agregarAsis(idMaestro,idGrado,idAlumno,recFecha,recAsistencia,correoPers,recUniAlum) {
+      const datosAsistencia = {
+      usuarios_id: idMaestro,
+      grados_id: idGrado,
+      alumnos_id: idAlumno,
+      fecha: recFecha,
+      estado: recAsistencia,
+      correo_personal: correoPers || null,
+    };
     
-    console.log("ID DEL MAESTRO QUE LLEGO: ",idMaestro);
+    if (typeof recUniAlum === 'number' && !isNaN(recUniAlum)) {
+      datosAsistencia.uniforme_id = recUniAlum;
+    }
     
     fetch("http://localhost:3000/agregarAsistencia", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            usuarios_id: idMaestro,  
-            grados_id: idGrado,      
-            alumnos_id: idAlumno,    
-            fecha: recFecha,  
-            estado: recAsistencia,  
-            correo_personal: correoPers || null,
-            uniforme_id: recUniAlum || null  
-        })
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(datosAsistencia)
     })
-    .then(res => res.json())
-    .then(data => {
-        console.log("Asistencia registrada:", data);
-/* 
-        let llamarNvGrado = document.querySelector('.div-tab-b');
 
-        let msjGuardAsis = document.createElement('p');
-        msjGuardAsis.className = "msj-guard-asis";
-        msjGuardAsis.textContent = "¡Asistencia Guardada!";
-        llamarNvGrado.appendChild(msjGuardAsis);
- */
-
-        }
-
-    )
     .catch(err => console.error("Error al registrar:", err));
 }
+
+
 
 function agregarUniforme(observaciones, alumnos_id) {
     return fetch("http://localhost:3000/uniforme", {
@@ -90,6 +80,38 @@ function asistenciaGrado(idGradoSel, asistencia, recFecha, idMaestro){
 
 }
 
+function asisGradoActualizar(idGradoSel, asistencia, recFecha, idMaestro){
+
+    fetch("http://localhost:3000/asistenciaDeGrado", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            grado_id: idGradoSel,
+            estado: asistencia,
+            fecha: recFecha,
+            idUser: idMaestro
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("Asistencia registrada:", data);
+
+        let asisTomadaGrado = JSON.parse(localStorage.getItem("gradosConAsistencia")) || [];
+        if (!asisTomadaGrado.includes(idGradoSel)) {
+            asisTomadaGrado.push(idGradoSel);
+            localStorage.setItem("gradosConAsistencia", JSON.stringify(asisTomadaGrado));
+        }
+
+        msjActualAsis();
+    }
+    )
+    .catch(err => console.error("Error al registrar:", err));
+
+}
+
+
 function almacenarAvisoGeneral(correoGen, idGrado, idMaestro){
     
     console.log("AVISO: ", correoGen, idGrado, idMaestro);
@@ -117,7 +139,32 @@ function almacenarAvisoGeneral(correoGen, idGrado, idMaestro){
 
 } 
 
+function actualizarAsis(idMaestro,idGrado,idAlumno,recFecha,recAsistencia,correoPers,recUniAlum) {
+    
+    fetch(`http://localhost:3000/actualizarAsis/${idAlumno}/${recFecha}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            usuarios_id: idMaestro,  
+            grado_id: idGrado,       
+            estado: recAsistencia,  
+            correo_personal: correoPers || null,
+            uniforme_id: recUniAlum || null  
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("Asistencia registrada:", data);
+
+    }
+
+    )
+    .catch(err => console.error("Error al registrar:", err));
+}
 
 
-export { agregarAsis, agregarUniforme, almacenarAvisoGeneral, asistenciaGrado };
+
+export { agregarAsis, agregarUniforme, almacenarAvisoGeneral, asistenciaGrado, actualizarAsis, asisGradoActualizar};
 

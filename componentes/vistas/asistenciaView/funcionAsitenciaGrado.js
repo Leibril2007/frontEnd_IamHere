@@ -1,13 +1,13 @@
 function mostrarMsjAsis() {
     let llamarNvGrado = document.querySelector('.div-tab-b');
 
-    let yaExiste = llamarNvGrado.querySelector('.msj-guard-asis');
+    let yaExiste = llamarNvGrado?.querySelector('.msj-guard-asis');
     if (yaExiste) yaExiste.remove();
 
     let msjGuardAsis = document.createElement('p');
     msjGuardAsis.className = "msj-guard-asis";
     msjGuardAsis.textContent = "¡Asistencia Guardada!";
-    llamarNvGrado.appendChild(msjGuardAsis);
+    llamarNvGrado?.appendChild(msjGuardAsis);
 }
 
 function cambiarGradoSel(idGradoSelNuevo) {
@@ -23,4 +23,30 @@ function cambiarGradoSel(idGradoSelNuevo) {
     }
 }
 
-export { mostrarMsjAsis, cambiarGradoSel }
+function msjActualAsis() {
+    let llamarNvGrado = document.querySelector('.div-tab-b');
+
+    let yaExiste = llamarNvGrado?.querySelector('.msj-guard-asis');
+    if (yaExiste) yaExiste.remove();
+
+    let msjGuardAsis = document.createElement('p');
+    msjGuardAsis.className = "msj-guard-asis";
+    msjGuardAsis.textContent = "¡Asistencia Actualizada!";
+    llamarNvGrado?.appendChild(msjGuardAsis);
+}
+
+function cambiarGradoSelAct(idGradoSelNuevo) {
+    let gradosConAsistencia = JSON.parse(localStorage.getItem("gradosConAsistencia")) || [];
+    let mensaje = document.querySelector('.msj-guard-asis');
+
+    if (gradosConAsistencia.includes(idGradoSelNuevo)) {
+        if (!mensaje) {
+            msjActualAsis(); 
+        }
+    } else {
+        if (mensaje) mensaje.remove(); 
+    }
+}
+
+
+export { mostrarMsjAsis, cambiarGradoSel, cambiarGradoSelAct, msjActualAsis }

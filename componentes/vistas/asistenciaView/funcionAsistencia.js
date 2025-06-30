@@ -25,8 +25,21 @@ function marcarPresencia(divCheck) {
 }
 
 function todosPresentes() {
+
     let todosDivAs = document.querySelectorAll('.inp-check');
+    let inpPresGen = document.querySelectorAll('.inp-check-pres, .inp-check-2do'); // para capturar ambos estados
     let todosYaPresentes = Array.from(todosDivAs).every(div => div.classList.contains('presente'));
+
+
+    inpPresGen.forEach(el => {
+        if (todosYaPresentes) {
+            el.classList.remove('presente', 'inp-check-2do');
+            el.classList.add('inp-check-pres');
+        } else {
+            el.classList.add('presente', 'inp-check-2do');
+            el.classList.remove('inp-check-pres');
+        }
+    });
 
     let idPresentes = [];
     let asistencias = {};
@@ -53,18 +66,30 @@ function todosPresentes() {
     }
 }
 
+
 function todosAusentes() {
     let todosDivAs = document.querySelectorAll('.inp-check');
     let todosYaAusentes = Array.from(todosDivAs).every(div => div.classList.contains('ausente'));
-
+    let inpPresGen = document.querySelectorAll('.inp-check-au, .inp-check-2do');
+    
+    inpPresGen.forEach(el => {
+        if (todosYaAusentes) {
+            el.classList.remove('ausente', 'inp-check-2do');
+            el.classList.add('inp-check-au');
+        } else {
+            el.classList.add('ausente', 'inp-check-2do');
+            el.classList.remove('inp-check-au');
+        }
+    });
+    
     let idsAusentes = [];
     let asistencias = {};
-
+    
     todosDivAs.forEach(cadaDivAl => {
         cadaDivAl.classList.remove('presente');
-
+    
         const idAlumno = cadaDivAl.dataset.idAlumno;
-
+    
         if (todosYaAusentes) {
             cadaDivAl.classList.remove('ausente');
             asistencias[idAlumno] = null;
@@ -74,9 +99,9 @@ function todosAusentes() {
             asistencias[idAlumno] = "ausente";
         }
     });
-
+    
     localStorage.setItem("asistencias", JSON.stringify(asistencias));
-
+    
     if (!todosYaAusentes) {
         console.log("IDs de alumnos marcados como ausentes:", idsAusentes);
     }
