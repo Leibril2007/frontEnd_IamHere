@@ -1,0 +1,29 @@
+.footer-proyec{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    flex-direction: column;   
+    gap: 1.5rem;
+}
+
+.btn-proyec{
+    width: 100%;
+    max-width: 30rem;
+    font-size: 1.7rem;
+    height: 3.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.btn-descarg-proyec{
+    margin-top: 1rem;
+
+    background-color: #F57E25;
+    color: white;
+    font-family: Lemon;
+}
+.btn-regreso-proyec{
+    color: #727272;
+}

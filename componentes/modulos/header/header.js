@@ -15,4 +15,11 @@ function cargarHeaderLog(){
     return secHead;
 }
 
-export { cargarHeaderLog };
+function cargarHeaderSimp(){
+    let secHead = document.createElement('header');
+    secHead.className = "sec-head-simp";
+
+    return secHead;
+}
+
+export { cargarHeaderLog, cargarHeaderSimp };

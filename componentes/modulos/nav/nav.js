@@ -4,7 +4,9 @@ import { cambiarGradoSel, cambiarGradoSelAct } from "../../vistas/asistenciaView
 
 function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
 
-    console.log("llego a nav ",dataGradoI);
+    console.log("dataUsuarioN ",dataUsuarioN);
+    console.log("dataCorreoN",dataCorreoN);
+    console.log("dataGradoId ",dataGradoI);
 
     let navPag = document.createElement('nav');
     navPag.className = "nav-pag";
@@ -109,6 +111,12 @@ function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
     btnProyeccionProf.className = "btn-proyeccion-prof";
     btnProyeccionProf.textContent = "Proyección";
     navPag.appendChild(btnProyeccionProf);
+
+    btnProyeccionProf.addEventListener('click', function(){
+
+        window.location.href = "dashboard.html";
+
+    });
 
 
     return navPag;

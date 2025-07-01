@@ -24,7 +24,6 @@ function users() {
 
   cargarNav(u, c, gradoId);
   cargarGrados(id);
-
   return user;
 }
 
@@ -57,10 +56,16 @@ async function cargarGrados(id) {
         option.textContent = grado.nombre;
         select.appendChild(option);
       });
-  
+      
+
+      localStorage.setItem("gradosDelNivel", JSON.stringify(grados));
+      console.log("grados",grados);
+
+      return grados;
       
     } catch (error) {
       console.error('Error al cargar los grados:', error);
+      return [];
     }
 }
 
