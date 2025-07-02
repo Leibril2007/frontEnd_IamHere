@@ -1,6 +1,8 @@
 import { conexionAs } from "../../vistas/asistenciaView/asistencia.js";
 import { añadirTablero } from "../../vistas/asistenciaView/asistencia.js";
 import { cambiarGradoSel, cambiarGradoSelAct } from "../../vistas/asistenciaView/funcionAsitenciaGrado.js";
+/* import { consultarAsistencia } from "../../conexiones/enviarDatos.js"; */
+
 
 function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
 
@@ -89,12 +91,10 @@ function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
     localStorage.setItem("recFecha", fechaInp.value);
     navPag.appendChild(fechaInp);
 
-    /* localStorage.removeItem("recFecha"); */
 
     fechaInp.addEventListener("change", function() {
         localStorage.setItem("recFecha", fechaInp.value);
     });
-
 
 /*     let horaInp = document.createElement('input');
     horaInp.className = "hora-inp";

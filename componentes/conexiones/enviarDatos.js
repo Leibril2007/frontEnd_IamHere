@@ -166,5 +166,6 @@ function actualizarAsis(idMaestro,idGrado,idAlumno,recFecha,recAsistencia,correo
 
 
 
+
 export { agregarAsis, agregarUniforme, almacenarAvisoGeneral, asistenciaGrado, actualizarAsis, asisGradoActualizar};
 
