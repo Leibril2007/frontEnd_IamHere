@@ -135,7 +135,7 @@ function cargarPantallaDash(){
 
     gradosGuardados.forEach(cGrado => {
 
-        dvBaseGrados.appendChild(cadaGradoProy(cGrado.nombre));        
+        dvBaseGrados.appendChild(cadaGradoProy(cGrado.nombre, cGrado.id));        
 
     });
 

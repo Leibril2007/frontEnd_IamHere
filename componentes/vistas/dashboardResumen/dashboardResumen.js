@@ -8,6 +8,12 @@ llamarDashboardRes.appendChild(cargarHeaderSimp());
 
 function cargarResumenDashAl(){
 
+    let idGradoProyec = localStorage.getItem("idGradoProyec");
+    console.log("que llego",idGradoProyec);
+
+    let nombreGradoProy = localStorage.getItem("gradoDeProyec");
+    console.log("que llego 2",nombreGradoProy);
+
     let baseDash = document.createElement('section');
     baseDash.className = "base-dash";
 
@@ -18,21 +24,116 @@ function cargarResumenDashAl(){
 
     let nivelTitProyec = document.createElement('h2');
     nivelTitProyec.className = "nivel-tit-proyec";
-    nivelTitProyec.textContent = "V Computación";
+    nivelTitProyec.textContent = nombreGradoProy;
 
     baseDash.appendChild(nivelTitProyec);
+
+    /* ALUM */
+    let alumnos = JSON.parse(localStorage.getItem("cadAlumProyec")) || [];
+    const nombreCompleto = alumnos.map(alumno => `${alumno.nombre} ${alumno.apellido}`);
+
+     /* GRAFICA */
+    let baseGraf = document.createElement('div');
+    baseGraf.className = "base-graf";
+
+    let canvasProf = document.createElement('canvas');
+    canvasProf.id = "graficaGradosProfe";
+    canvasProf.className = "design-grafic";
+
+    baseGraf.appendChild(canvasProf);
+    baseDash.appendChild(baseGraf);
+
+    const gradosGuard = JSON.parse(localStorage.getItem("gradosDelNivel")) || [];
+    const cadaGrado = gradosGuard.map(grado => grado.nombre);
+    console.log("cada", cadaGrado);
+
+    const grafica = canvasProf.getContext('2d');
+
+    let colores = ['#F57E25', '#000CB6', '#fcc601', '#7F00FF', '#00C49A', '#FF6666', '#2E8B57'];
+
+    let valoresObtAsisPG = JSON.parse(localStorage.getItem("valores")) || [];
+
+/*     console.log("Cantidad de grados:", cadaGrado.length);
+    console.log("Cantidad de datos:", valoresObtAsisPG.length);
+    console.log("dfasdfdd", valoresObtAsisPG);
+    console.log("qrwer", cadaGrado); */
+
+
+    new Chart(grafica, {
+      type: 'bar',
+      data: {
+        labels: nombreCompleto,
+        datasets: [{
+          label: 'Asistencia semanal de cada grado',
+          data: valoresObtAsisPG,
+          backgroundColor: colores.slice(0, gradosGuard.length),
+          borderColor: '#ffffff',
+          borderWidth: 2,
+          barThickness: 30
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top',
+            labels: {
+              color: '#824100',
+              font: {
+                size: 15,
+                family: 'Orelega One',
+                weight: '400'
+              }
+            }
+          },
+          tooltip: {
+            bodyFont: {
+              size: 14,
+              family: 'Orelega One'
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: {
+              color: '#333',
+            },
+            grid: {
+              color: '#ddd'
+            }
+          },
+          y: {
+            ticks: {
+              autoSkip: false,
+              color: '#824100',
+              font: {
+                size: 15,
+                family: 'Orelega One',
+                weight: '400',
+              }
+            },
+            grid: {
+              color: '#ddd'
+            }
+          }
+        }
+      }
+    });
+    let titVGrados = document.createElement('h2');
+    titVGrados.className = "tit-v-grados";
+    titVGrados.textContent = "Asistencia de cada alumno"
+    baseDash.appendChild(titVGrados);
 
     /* CADA ALUM */
 
     let dvBaseAlum = document.createElement('div');
     dvBaseAlum.className = "dv-base-alum";
 
-    let alum = ["Josefina Hernandez","Josefina Hernandez","Josefina Hernandez","Josefina Hernandez" ]
-
-    alum.forEach(cAlum => {
-
-        dvBaseAlum.appendChild(cadaAlumRes(cAlum));
-
+    alumnos.forEach(cAlumno => {
+        const nombreCompleto = `${cAlumno.nombre} ${cAlumno.apellido}`;
+        dvBaseAlum.appendChild(cadaAlumRes(nombreCompleto));
     });
 
     baseDash.appendChild(dvBaseAlum);

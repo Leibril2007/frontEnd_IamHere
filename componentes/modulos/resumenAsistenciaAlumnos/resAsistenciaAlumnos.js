@@ -1,4 +1,4 @@
-function cadaAlumRes(){
+function cadaAlumRes(nomComp){
 
     let baseCGProy = document.createElement('div');
     baseCGProy.className = "base-c-g-proy";
@@ -10,87 +10,69 @@ function cadaAlumRes(){
 
     let txtCGproy = document.createElement('p');
     txtCGproy.className = "txt-c-g-proy";
-    txtCGproy.textContent = "Nombre apellido";
+    txtCGproy.textContent = nomComp;
     baseCGProy.appendChild(txtCGproy);
 
-    /* GRAFICA IND */
     let baseGrafResA = document.createElement('div');
     baseGrafResA.className = "base-graf-res-a";
-
+    
     let canvasIndividual = document.createElement('canvas');
     canvasIndividual.id = "graficaBarraUnica";
     canvasIndividual.className = "design-grafic";
-
+    
     baseGrafResA.appendChild(canvasIndividual);
     baseCGProy.appendChild(baseGrafResA);
-
+    
     const grafica = canvasIndividual.getContext('2d');
-
+    
     // Etiqueta y valor único
     const nombreGrado = "5°A";
-    const valorAsistencia = 32;
-
+    const valorAsistencia = 100; // porcentaje, ejemplo
+    
     new Chart(grafica, {
       type: 'bar',
       data: {
-        labels: [nombreGrado], // 👈 solo un grado
+        labels: [""], // ocultar la etiqueta lateral
         datasets: [{
-          data: [valorAsistencia], // 👈 solo un valor
-          backgroundColor: '#00C49A',
-          borderColor: '#ffffff',
-          borderWidth: 2,
-          barThickness: 40
+          data: [valorAsistencia],
+          backgroundColor: '#92D1F5',
+          borderRadius: 5,
+          barThickness: 25,
         }]
       },
       options: {
-        indexAxis: 'y',
+        indexAxis: 'y', // 👈 barra horizontal
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-          legend: {
-            position: 'top',
-            labels: {
-              color: '#824100',
-              font: {
-                size: 15,
-                family: 'Orelega One',
-                weight: '400'
-              }
-            }
-          },
-          tooltip: {
-            bodyFont: {
+          legend: { display: false }, // ocultar leyenda
+          tooltip: { enabled: false }, // sin tooltip
+          datalabels: {
+            anchor: 'end',
+            align: 'right',
+            color: '#333',
+            font: {
               size: 14,
-              family: 'Orelega One'
+              family: 'Orelega One',
+            },
+            formatter: function (value) {
+              return `${value}%`;
             }
           }
         },
         scales: {
-          x: {
-            beginAtZero: true,
-            ticks: {
-              color: '#333',
-            },
-            grid: {
-              color: '#ddd'
-            }
-          },
           y: {
-            ticks: {
-              color: '#824100',
-              font: {
-                size: 15,
-                family: 'Orelega One',
-                weight: '400',
-              }
-            },
-            grid: {
-              color: '#ddd'
-            }
+            display: false // ocultar eje Y
+          },
+          x: {
+            display: false, // ocultar eje X
+            min: 0,
+            max: 100 // para que se entienda como porcentaje
           }
         }
-      }
+      },
     });
+    
 
 
     baseCGProy.appendChild(baseGrafResA);
