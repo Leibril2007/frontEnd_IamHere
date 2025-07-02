@@ -24,6 +24,7 @@ function users() {
 
   cargarNav(u, c, gradoId);
   cargarGrados(id);
+  cargarNivel(id);
   return user;
 }
 
@@ -37,7 +38,7 @@ async function cargarGrados(id) {
     let idEnt = parseInt(id);
 
     try {
-      const response = await fetch(`http://localhost:3000/profesor/${idEnt}/nivel`); 
+      const response = await fetch(`http://localhost:3000/profesor/${idEnt}/grados`); 
 /*       console.log("Respuesta del servidor:", response); */
 
       if (!response.ok) throw new Error('Error en la respuesta del servidor');
@@ -67,6 +68,28 @@ async function cargarGrados(id) {
       console.error('Error al cargar los grados:', error);
       return [];
     }
+}
+
+async function cargarNivel(id) {
+
+  let idEnt = parseInt(id);
+
+  try {
+    const response = await fetch(`http://localhost:3000/profesor/${idEnt}/nivel`); 
+
+    if (!response.ok) throw new Error('Error en la respuesta del servidor');
+
+    const nivel = await response.json();   
+
+    localStorage.setItem("nombreNivel", JSON.stringify(nivel));
+    console.log(nivel);
+
+    return nivel;
+    
+  } catch (error) {
+    console.error('Error al cargar los nivel:', error);
+    return [];
+  }
 }
 
 function alumnosBd() {

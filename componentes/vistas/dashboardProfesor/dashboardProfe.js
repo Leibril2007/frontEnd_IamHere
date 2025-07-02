@@ -18,9 +18,12 @@ function cargarPantallaDash(){
     baseDash.appendChild(asisTitProyec);
 
     /* TIT NIV */
+    let traerNivel = JSON.parse(localStorage.getItem("nombreNivel")) || [];
+    let nombreNivelP = traerNivel.map(nivel => nivel.nombre);
+
     let nivelTitProyec = document.createElement('h2');
     nivelTitProyec.className = "nivel-tit-proyec";
-    nivelTitProyec.textContent = "Nivel Diversificado";
+    nivelTitProyec.textContent = nombreNivelP;
 
     baseDash.appendChild(nivelTitProyec);
 
@@ -35,16 +38,21 @@ function cargarPantallaDash(){
     baseGraf.appendChild(canvasProf);
     baseDash.appendChild(baseGraf);
 
+    const gradosGuard = JSON.parse(localStorage.getItem("gradosDelNivel")) || [];
+    const cadaGrado = gradosGuard.map(grado => grado.nombre);
+
     const grafica = canvasProf.getContext('2d');
+
+    let colores = ['#F57E25', '#000CB6', '#fcc601', '#7F00FF', '#00C49A', '#FF6666', '#2E8B57'];
 
     new Chart(grafica, {
       type: 'pie',
       data: {
-        labels: ['V Computación', 'IV Computación', 'V Perito','V Perito','V Perito','V Perito','V Perito'],
+        labels: cadaGrado,
         datasets: [{
           label: 'Asistencia de cada grado',
           data: [12, 19, 7],
-          backgroundColor: ['#F57E25', '#000CB6', '#fcc601'],
+          backgroundColor: colores.slice(0, gradosGuard.length),
           borderColor: '#ffffff',
           borderWidth: 2
         }]
