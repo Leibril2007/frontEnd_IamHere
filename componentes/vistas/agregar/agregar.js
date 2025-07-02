@@ -56,8 +56,43 @@ function cargarLogin(){
     /* FUNCION INGRESAR */
 
     botonIngresar.addEventListener("click", async function(){
+        let nomIng = inputNombre.value;
+        let apeIng = inputApe.value;
+        let corrIng = inputCorr.value;
+
+        let idGradoSel = localStorage.getItem("idGradoSel");
+
+        console.log("id grado tomado", idGradoSel);
+        
+        try {
+            const response = await fetch('http://localhost:3000/agregarAlumno', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    nombre: nomIng,
+                    apellido: apeIng,
+                    correoIns: corrIng,
+                    idGrado: idGradoSel
+                })
+            });
+
+            if(response.ok){
+                let msjGuardEx = document.createElement('p');
+                msjGuardEx.className = "msj-guard-ex";
+                msjGuardEx.textContent = "Guardado con exito!";
+                formularioLogin.appendChild(msjGuardEx);
+            }
 
 
+        } catch (error){
+            console.error("Error en el fetch:", error);
+            let errorMsg = document.createElement('p');
+            errorMsg.className = "error";
+            errorMsg.textContent = "No se pudo conectar al servidor";
+            formularioLogin.appendChild(errorMsg);
+        }
     });
 
 
