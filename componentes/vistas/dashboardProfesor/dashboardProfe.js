@@ -31,61 +31,6 @@ function cargarPantallaDash(){
     let baseGraf = document.createElement('div');
     baseGraf.className = "base-graf";
 
-/*     let canvasProf = document.createElement('canvas');
-    canvasProf.id = "graficaGradosProfe";
-    canvasProf.className = "design-grafic";
-
-    baseGraf.appendChild(canvasProf);
-    baseDash.appendChild(baseGraf);
-
-    const gradosGuard = JSON.parse(localStorage.getItem("gradosDelNivel")) || [];
-    const cadaGrado = gradosGuard.map(grado => grado.nombre);
-
-    const grafica = canvasProf.getContext('2d');
-
-    let colores = ['#F57E25', '#000CB6', '#fcc601', '#7F00FF', '#00C49A', '#FF6666', '#2E8B57'];
-
-    let valoresObtAsisPG = localStorage.getItem("valores");
-
-    console.log("adjhf", valoresObtAsisPG);
-
-
-    new Chart(grafica, {
-      type: 'pie',
-      data: {
-        labels: cadaGrado,
-        datasets: [{
-          label: 'Asistencia de cada grado',
-          data: valoresObtAsisPG,
-          backgroundColor: colores.slice(0, gradosGuard.length),
-          borderColor: '#ffffff',
-          borderWidth: 2
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'bottom',
-            labels: {
-              color: '#824100',
-              font: {
-                size: 15,
-                family: 'Orelega One',
-                weight: '400'
-              }
-            }
-          },
-          tooltip: {
-            bodyFont: {
-              size: 14,
-              family: 'Orelega One'
-            }
-          }
-        }
-      }
-    }); */
-
     let canvasProf = document.createElement('canvas');
     canvasProf.id = "graficaGradosProfe";
     canvasProf.className = "design-grafic";
@@ -102,9 +47,6 @@ function cargarPantallaDash(){
     let colores = ['#F57E25', '#000CB6', '#fcc601', '#7F00FF', '#00C49A', '#FF6666', '#2E8B57'];
 
     let valoresObtAsisPG = JSON.parse(localStorage.getItem("valores")) || [];
-
-/*     console.log("adjhf", valoresObtAsisPG);
-    console.log(cadaGrado); */
 
     console.log("Cantidad de grados:", cadaGrado.length);
     console.log("Cantidad de datos:", valoresObtAsisPG.length);

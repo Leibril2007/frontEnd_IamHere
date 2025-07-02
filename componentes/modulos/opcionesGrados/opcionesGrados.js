@@ -8,6 +8,12 @@ function cadaGradoProy(grado){
     divCGProy.textContent = "📊";
     baseCGProy.appendChild(divCGProy);
 
+    divCGProy.addEventListener("click", function(){
+
+        window.location.href = "resumenProfesor.html";
+
+    });
+
     let txtCGproy = document.createElement('p');
     txtCGproy.className = "txt-c-g-proy";
     txtCGproy.textContent = grado;

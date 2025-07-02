@@ -1,0 +1,34 @@
+#resumenProfesorB{
+    width: 100%;
+    height: 100vh;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 5rem 1fr 13rem;
+}
+
+.base-dash{
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3.5rem 3.8rem 1fr;
+}
+.asis-tit-proyec{
+    color: #000CB6;
+    font-family: "Orelega One", serif;
+    font-weight: 400;
+    text-align: center;
+    align-self: flex-end;
+    font-size: 2.7rem;
+}
+.nivel-tit-proyec{
+    color: #fcc601;
+    font-family: "Orelega One", serif;
+    font-weight: 200;
+    text-align: center;
+    align-self: center;
+    font-size: 2rem;
+}
+.dv-base-alum{
+    margin-top: 2rem;
+}
