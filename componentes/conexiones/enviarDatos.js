@@ -165,21 +165,7 @@ function actualizarAsis(idMaestro,idGrado,idAlumno,recFecha,recAsistencia,correo
 }
 
 
-function consultarAsistencia() {
-    const desde = document.getElementById('fechaDesde').value;
-    const hasta = document.getElementById('fechaHasta').value;
-  
-    fetch(`/asistencia/porcentaje-semanal?desde=${desde}&hasta=${hasta}`)
-      .then(res => res.json())
-      .then(data => {
-        console.log('Porcentaje de asistencia:', data);
-        // Aquí puedes llamar a tu función para graficar o mostrar datos
-      })
-      .catch(err => {
-        console.error('Error al consultar porcentaje de asistencia:', err);
-      });
-}
 
 
-export { agregarAsis, agregarUniforme, almacenarAvisoGeneral, asistenciaGrado, actualizarAsis, asisGradoActualizar, consultarAsistencia};
+export { agregarAsis, agregarUniforme, almacenarAvisoGeneral, asistenciaGrado, actualizarAsis, asisGradoActualizar};
 

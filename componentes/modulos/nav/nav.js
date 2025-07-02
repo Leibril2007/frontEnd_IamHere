@@ -1,7 +1,7 @@
 import { conexionAs } from "../../vistas/asistenciaView/asistencia.js";
 import { añadirTablero } from "../../vistas/asistenciaView/asistencia.js";
 import { cambiarGradoSel, cambiarGradoSelAct } from "../../vistas/asistenciaView/funcionAsitenciaGrado.js";
-import { consultarAsistencia } from "../../conexiones/enviarDatos.js";
+/* import { consultarAsistencia } from "../../conexiones/enviarDatos.js"; */
 
 
 function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
