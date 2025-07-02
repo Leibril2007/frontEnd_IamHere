@@ -1,5 +1,6 @@
 let principal = document.querySelector("#root");
 
+
 function cargarPrincipal(){
 
     let divLogo = document.createElement('div');
@@ -28,7 +29,7 @@ function cargarPrincipal(){
 
     btnLogin.addEventListener("click", function(){
         console.log("FUNCIONA BRO")
-        window.location.href = "../componentes/paginas/login.html";
+        window.location.href = "componentes/paginas/login.html";
     });
 
     principal.appendChild(btnLogin);

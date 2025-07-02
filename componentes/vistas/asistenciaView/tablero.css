@@ -1,19 +1,45 @@
+.div-tab-b{
+
+    display: grid;
+    grid-template-rows: 5rem 1fr;
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+
+}
+
+.msj-guard-asis{
+    grid-row: 1/2;
+    grid-column: 1/2;
+
+    align-self: self-end;
+    justify-self: center;
+
+    font-size: 2.3rem;
+    color: #36A200;
+    font-weight: 600;
+    font-family: Roboto Flex;
+}
+
 .sec-tab-dom{
     grid-row: 2/3;
     width: 100%;
 }
 
 .sec-tablero{
+    grid-row: 2/3;
     width: 100%;
     padding: 1rem;
 }
 
-.tit-grado-tab{
+.tit-grado-tablero{
+
     text-align: center;
-    font-size: 2rem;
+    font-size: 2.7rem;
     margin-top: 2rem;
     margin-bottom: 3rem;
-    color: rgb(146, 101, 213);
+    color: #000CB6;
+    font-family: "Orelega One", serif;
+    font-weight: 400;
 }
 
 .titsEGenerales{
@@ -27,10 +53,14 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(5, 1fr);
+    gap: 1.5rem;
 }
 
 .tit-ins-gen{
-
+    text-align: end;
+    color: #824100;
+    font-size: 1.8rem;
+    font-weight: 300;
 }
 
 .bt-ins-gen{
@@ -47,7 +77,7 @@
 .bt-pres-tab-ins{
     grid-column: 2/3;
     grid-row: 1/2;
-    background-color: blue;
+    background-color: #005DA9;
 }
 
 .tit-bt-au-tab{
@@ -57,7 +87,7 @@
 .bt-au-tab-ins{
     grid-column: 2/3;
     grid-row: 2/3;
-    background-color: red;
+    background-color: #D32424;
 }
 
 .tit-cor-tab{
@@ -67,6 +97,7 @@
 .ic-cor-tab-ins{
     grid-column: 2/3;
     grid-row: 3/4;
+    font-size: 2.5rem;
 }
 
 .tit-el-tab{
@@ -80,37 +111,85 @@
 
 
 .d-cor-gen{
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
-
-
-.c-alumno{
-    max-width: 100%;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    height: 5rem;
-    padding: 1rem 1.5rem;
-    background-color: #e7e0a1;
-    border-radius: 2.5rem;
-
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+}
+.tit-cor-gen{
+    align-self: center;
+    justify-self: start;
+    color: #824100;
+    font-size: 1.8rem;
+}
+.ic-cor-gen-ins{
+    font-size: 2.8rem;
+    align-self: center;
+    justify-self: start;
+    cursor: pointer;
+}
 
-    align-items: center;
-    text-align: start;
-}
-.nombre-alumno{
-    grid-row: 1/2;
-}
-.base-inputs{
-    justify-content: center;
-    grid-column: 3/4;
+.div-marcar-t{
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.3rem;
+    color: rgb(67, 67, 67);
+    font-size: 1.3rem;
+    font-family: Roboto Flex;
+    margin: 2rem 0rem;
+}
 
-    font-size: 1.5rem;
+
+.base-btn-tab{
+    margin-top: 4rem;
+    display: flex;
+    
+    gap: 3.5rem;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.boton {
+    width: 100%;
+    max-width: 30rem;
+    font-size: 1.7rem;
+    height: 3.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.btn-agregar{
+    margin-top: 1rem;
+    align-self: center;
+    justify-self: center;
+    color: #005DAC;
+    font-weight: 600;
+    font-family: Roboto Flex;
+    background-color: white;
+}
+.btn-agregar:hover{
+    background-color: #0c6dc2;
+    color: aliceblue;
+    transition: 0.3s;
+}
+
+.btn-guardar{
+    margin-top: 1rem;
+
+    background-color: #F57E25;
+    font-size: 1.6rem;
+    color: white;
+    font-family: Lemon;
+    align-self: center;
+    justify-self: center;
+}
+
+.btn-guardar:hover {
+    background: linear-gradient(to right, #86fde8, #acb6e5);
+    /* transition: 5s; */
+    transition: 0.3s;
 }
