@@ -44,7 +44,24 @@ async function obtenerAsistenciaAlumno(idAlumno) {
     console.log("Valores de asistencia:", valoresAsisAl);
 
     console.log("Asistencia del alumno:", datos);
-  }
+}
   
 
-export { alumnosProyec, asisProyecAlumG, obtenerAsistenciaAlumno };
+async function obtenerReportAlum(idAlumno) {
+  const res = await fetch(`http://localhost:3000/proyecciones/recUniforme/${idAlumno}`);
+  const datos = await res.json();
+
+  localStorage.setItem("lisObsUniPA", JSON.stringify(datos));
+
+}
+
+async function obtenerObsAlum(idAlumno) {
+  const res = await fetch(`http://localhost:3000/proyecciones/recObservaciones/${idAlumno}`);
+  const datos = await res.json();
+
+  localStorage.setItem("lisObsCAl", JSON.stringify(datos));
+}
+
+
+
+export { alumnosProyec, asisProyecAlumG, obtenerAsistenciaAlumno, obtenerReportAlum, obtenerObsAlum };

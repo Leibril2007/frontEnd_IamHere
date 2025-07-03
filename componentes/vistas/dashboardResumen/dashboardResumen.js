@@ -63,7 +63,7 @@ function cargarResumenDashAl(){
       data: {
         labels: nombreCompleto,
         datasets: [{
-          label: 'Asistencia semanal de cada grado',
+          label: 'Asistencia semanal del grado',
           data: valoresAG,
           backgroundColor: colores.slice(0, gradosGuard.length),
           borderColor: '#ffffff',

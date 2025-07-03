@@ -12,32 +12,33 @@ function cadaAlumRes(nomComp, idAl){
     divCGProy.textContent = "👤";
     baseCGProy.appendChild(divCGProy);
 
-    let txtCGproy = document.createElement('div');
+    let txtCGproy = document.createElement('p');
     txtCGproy.className = "txt-c-g-proy";
     txtCGproy.textContent = nomComp;
     baseCGProy.appendChild(txtCGproy);
 
-    txtCGproy.addEventListener("click", async function(){
-
-        const yaExiste = baseCGProy.querySelector('.base-graf-res-alum');
-        if (yaExiste) {
-          yaExiste.remove();
-          return; 
-        }
-      
-        await obtenerAsistenciaAlumno(idAl);
-      
-        let valoresAsisAl = JSON.parse(localStorage.getItem("valoresAsisAl")) || [];
-        console.log("Valores de asistencia:", valoresAsisAl);
-      
-        baseCGProy.appendChild(grafAlInd(valoresAsisAl));
-
-
-    });
+    let btnVerAP = document.createElement('div');
+    btnVerAP.className = "btn-ver btn-ver-ap";
+    btnVerAP.textContent = "Ver asistencia";
+    baseCGProy.appendChild(btnVerAP);
     
+    btnVerAP.addEventListener("click", async function() {
+      
+      const yaExiste = baseCGProy.querySelector('.bas-graf-t');
+      if (yaExiste) {
+        yaExiste.remove();
+        return; 
+      }
+
+      await obtenerAsistenciaAlumno(idAl);
+    
+      let valoresAsisAl = JSON.parse(localStorage.getItem("valoresAsisAl")) || [];
+      console.log("Valores de asistencia:", valoresAsisAl);
+    
+      baseCGProy.appendChild(grafAlInd(valoresAsisAl, idAl));
 
 
-
+    })
 
     return baseCGProy;
 
