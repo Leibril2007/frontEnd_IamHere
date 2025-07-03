@@ -83,6 +83,9 @@ async function cargarNivel(id) {
 
     localStorage.setItem("nombreNivel", JSON.stringify(nivel));
     console.log(nivel);
+    obtenerAsistenciaPGraf(nivel[0].id);
+
+    console.log("graf", nivel[0].id);
 
     return nivel;
     
@@ -111,5 +114,17 @@ function alumnosBd() {
       });
   });
 }
+
+
+async function obtenerAsistenciaPGraf(nivelId) {
+  const respuesta = await fetch(`http://localhost:3000/asistenciaPieNivel/${nivelId}`);
+  const datos = await respuesta.json();
+
+
+  localStorage.setItem("asistenciaPorGrado", JSON.stringify(datos));
+
+
+}
+
 
 export { alumnosBd };

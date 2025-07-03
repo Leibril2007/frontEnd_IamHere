@@ -38,30 +38,43 @@ function cargarPantallaDash(){
     baseGraf.appendChild(canvasProf);
     baseDash.appendChild(baseGraf);
 
-    const gradosGuard = JSON.parse(localStorage.getItem("gradosDelNivel")) || [];
-    const cadaGrado = gradosGuard.map(grado => grado.nombre);
+    const gradosGuard = JSON.parse(localStorage.getItem("asistenciaPorGrado")) || [];
+    const cadaGrado = gradosGuard.map(d => d.grado);
+    const valoresObtAsisPG = gradosGuard.map(d => d.porcentaje_asistencia);
+
+
+    console.log("cada", cadaGrado);
 
     const grafica = canvasProf.getContext('2d');
 
     let colores = ['#F57E25', '#000CB6', '#fcc601', '#7F00FF', '#00C49A', '#FF6666', '#2E8B57'];
 
+    console.log("Cantidad de grados:", cadaGrado.length);
+    console.log("Cantidad de datos:", valoresObtAsisPG.length);
+    console.log("dfasdfdd", valoresObtAsisPG);
+    console.log("qrwer", cadaGrado);
+
+
     new Chart(grafica, {
-      type: 'pie',
+      type: 'bar',
       data: {
         labels: cadaGrado,
         datasets: [{
-          label: 'Asistencia de cada grado',
-          data: [12, 19, 7],
+          label: 'Asistencia semanal de cada grado',
+          data: valoresObtAsisPG,
           backgroundColor: colores.slice(0, gradosGuard.length),
           borderColor: '#ffffff',
-          borderWidth: 2
+          borderWidth: 2,
+          barThickness: 30
         }]
       },
       options: {
+        indexAxis: 'y',
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
           legend: {
-            position: 'bottom',
+            position: 'top',
             labels: {
               color: '#824100',
               font: {
@@ -77,9 +90,35 @@ function cargarPantallaDash(){
               family: 'Orelega One'
             }
           }
+        },
+        scales: {
+          x: {
+            ticks: {
+              color: '#333',
+            },
+            grid: {
+              color: '#ddd'
+            }
+          },
+          y: {
+            ticks: {
+              autoSkip: false,
+              color: '#824100',
+              font: {
+                size: 15,
+                family: 'Orelega One',
+                weight: '400',
+              }
+            },
+            grid: {
+              color: '#ddd'
+            }
+          }
         }
       }
     });
+
+
 
 
     /* GRADOS */
@@ -97,7 +136,7 @@ function cargarPantallaDash(){
 
     gradosGuardados.forEach(cGrado => {
 
-        dvBaseGrados.appendChild(cadaGradoProy(cGrado.nombre));        
+        dvBaseGrados.appendChild(cadaGradoProy(cGrado.nombre, cGrado.id));        
 
     });
 
@@ -110,6 +149,4 @@ function cargarPantallaDash(){
 llamarDashboard.appendChild(cargarPantallaDash());
 llamarDashboard.appendChild(footProyecciones());
 
-
-cargarPantallaDash();
 export { cargarPantallaDash };

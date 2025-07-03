@@ -31,4 +31,35 @@ function footProyecciones(){
 
 }
 
-export { footProyecciones };
+function footResDash(){
+
+    let footerProyec = document.createElement('footer');
+    footerProyec.className = "footer-proyec";
+    
+    let btnDescargProyec = document.createElement('div');
+    btnDescargProyec.className = "btn-proyec  btn-descarg-proyec";
+    btnDescargProyec.textContent = "Descargar Resumen";
+    footerProyec.appendChild(btnDescargProyec);
+
+    btnDescargProyec.addEventListener("click", function(){
+
+        descargarGrafica();
+
+    });
+
+    let btnRegresoProyec = document.createElement('div');
+    btnRegresoProyec.className = "btn-proyec  btn-regreso-proyec";
+    btnRegresoProyec.textContent = "Regresar a proyecciones";
+    footerProyec.appendChild(btnRegresoProyec);
+
+    btnRegresoProyec.addEventListener("click", function(){
+
+        window.location.href = "dashboard.html";
+
+    });
+
+    return footerProyec;
+
+}
+
+export { footProyecciones, footResDash };
