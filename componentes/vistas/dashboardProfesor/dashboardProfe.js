@@ -38,15 +38,16 @@ function cargarPantallaDash(){
     baseGraf.appendChild(canvasProf);
     baseDash.appendChild(baseGraf);
 
-    const gradosGuard = JSON.parse(localStorage.getItem("gradosDelNivel")) || [];
-    const cadaGrado = gradosGuard.map(grado => grado.nombre);
+    const gradosGuard = JSON.parse(localStorage.getItem("asistenciaPorGrado")) || [];
+    const cadaGrado = gradosGuard.map(d => d.grado);
+    const valoresObtAsisPG = gradosGuard.map(d => d.porcentaje_asistencia);
+
+
     console.log("cada", cadaGrado);
 
     const grafica = canvasProf.getContext('2d');
 
     let colores = ['#F57E25', '#000CB6', '#fcc601', '#7F00FF', '#00C49A', '#FF6666', '#2E8B57'];
-
-    let valoresObtAsisPG = JSON.parse(localStorage.getItem("valores")) || [];
 
     console.log("Cantidad de grados:", cadaGrado.length);
     console.log("Cantidad de datos:", valoresObtAsisPG.length);
@@ -148,6 +149,4 @@ function cargarPantallaDash(){
 llamarDashboard.appendChild(cargarPantallaDash());
 llamarDashboard.appendChild(footProyecciones());
 
-
-cargarPantallaDash();
 export { cargarPantallaDash };
