@@ -1,4 +1,5 @@
 import { alumnosProyec } from "../../conexiones/conexionProyec.js";
+import { asisProyecAlumG } from "../../conexiones/conexionProyec.js";
 
 function cadaGradoProy(grado, idGrado){
 
@@ -10,24 +11,17 @@ function cadaGradoProy(grado, idGrado){
     divCGProy.textContent = "📊";
     baseCGProy.appendChild(divCGProy);
 
-    divCGProy.addEventListener("click", function(){
-
+    divCGProy.addEventListener("click", async function () {
         localStorage.setItem("idGradoProyec", idGrado);
         localStorage.setItem("gradoDeProyec", grado);
-
-        alumnosProyec().then(alumnos => {
       
-            const alumnosDelGrado = alumnos.filter(alumno => alumno.grados_id == idGrado);
-
-            localStorage.setItem("cadAlumProyec", JSON.stringify(alumnosDelGrado));
-
-            console.log("alumnosDelGrado", alumnosDelGrado);
-
-
-            window.location.href = "resumenProfesor.html";
-
-        });
+        const alumnos = await alumnosProyec();
+        const alumnosDelGrado = alumnos.filter(alumno => alumno.grados_id == idGrado);
+        localStorage.setItem("cadAlumProyec", JSON.stringify(alumnosDelGrado));
         
+        await asisProyecAlumG(idGrado); 
+
+        window.location.href = "resumenProfesor.html";
     });
 
     let txtCGproy = document.createElement('p');

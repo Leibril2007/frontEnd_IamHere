@@ -120,8 +120,8 @@ async function obtenerAsistenciaPGraf(nivelId) {
   const respuesta = await fetch(`http://localhost:3000/asistenciaPieNivel/${nivelId}`);
   const datos = await respuesta.json();
 
-  const valores = datos.map(d => d.total_asistencias);
-  console.log("dlkk", datos);
+  const valores = datos.map(d => d.porcentaje_asistencia);
+  console.log("valores de asistecia cada grado", datos);
 
   localStorage.setItem("valores", JSON.stringify(valores));
 

@@ -51,12 +51,11 @@ function cargarResumenDashAl(){
 
     let colores = ['#F57E25', '#000CB6', '#fcc601', '#7F00FF', '#00C49A', '#FF6666', '#2E8B57'];
 
-    let valoresObtAsisPG = JSON.parse(localStorage.getItem("valores")) || [];
+    /* VALUE */
 
-/*     console.log("Cantidad de grados:", cadaGrado.length);
-    console.log("Cantidad de datos:", valoresObtAsisPG.length);
-    console.log("dfasdfdd", valoresObtAsisPG);
-    console.log("qrwer", cadaGrado); */
+    let valoresAG = JSON.parse(localStorage.getItem("valoresAG")) || [];
+    console.log("Valores de asistencia:", valoresAG);
+    /* -------- */
 
 
     new Chart(grafica, {
@@ -65,7 +64,7 @@ function cargarResumenDashAl(){
         labels: nombreCompleto,
         datasets: [{
           label: 'Asistencia semanal de cada grado',
-          data: valoresObtAsisPG,
+          data: valoresAG,
           backgroundColor: colores.slice(0, gradosGuard.length),
           borderColor: '#ffffff',
           borderWidth: 2,
@@ -133,7 +132,9 @@ function cargarResumenDashAl(){
 
     alumnos.forEach(cAlumno => {
         const nombreCompleto = `${cAlumno.nombre} ${cAlumno.apellido}`;
-        dvBaseAlum.appendChild(cadaAlumRes(nombreCompleto));
+        let idAl = cAlumno.id;
+        console.log("id al", idAl);
+        dvBaseAlum.appendChild(cadaAlumRes(nombreCompleto, idAl));
     });
 
     baseDash.appendChild(dvBaseAlum);

@@ -18,4 +18,33 @@ function alumnosProyec() {
     });
 }
 
-export { alumnosProyec };
+async function asisProyecAlumG(idGrado) {
+    const respuesta = await fetch(`http://localhost:3000/proyecciones/asistenciaGrado/${idGrado}`);
+    const datos = await respuesta.json();
+  
+    const valoresAG = datos.map(d => d.porcentaje_asistencia); 
+
+    localStorage.setItem("valoresAG", JSON.stringify(valoresAG));
+
+    console.log("Datos crudos:", datos);
+    console.log("Valores de asistencia:", valoresAG);
+  
+}
+  
+
+async function obtenerAsistenciaAlumno(idAlumno) {
+    const res = await fetch(`http://localhost:3000/proyecciones/asistenciaAlumEsp/${idAlumno}`);
+    const datos = await res.json();
+
+    const valoresAsisAl = datos.map(d => d.porcentaje_asistencia); 
+
+    localStorage.setItem("valoresAsisAl", JSON.stringify(valoresAsisAl));
+
+    console.log("Datos crudos:", datos);
+    console.log("Valores de asistencia:", valoresAsisAl);
+
+    console.log("Asistencia del alumno:", datos);
+  }
+  
+
+export { alumnosProyec, asisProyecAlumG, obtenerAsistenciaAlumno };
