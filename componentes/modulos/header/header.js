@@ -2,6 +2,17 @@ function cargarHeaderLog(){
     let secHead = document.createElement('header');
     secHead.className = "sec-head";
 
+    let btnCSFoo = document.createElement('div');
+    btnCSFoo.className = "btn-cs-foo";
+    btnCSFoo.textContent = "Cerrar Sesión";
+    secHead.appendChild(btnCSFoo);
+
+    btnCSFoo.addEventListener("click", function(){
+
+        window.location.href = "cerrarSesion.html";
+
+    });
+
     let dImgHeadD = document.createElement('div');
     dImgHeadD.className = "d-img-head-d";
     

@@ -1,0 +1,60 @@
+.seccion-cs {
+    border: 1px solid black;
+    width: 100%;
+    height: 100vh;
+    grid-row: 1/3;
+    padding: 5rem;
+
+/*     background-color: #005DA9; */
+    background: #F57E25;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bas-vent-cs{
+    background-color: white;
+    width: 100%;
+    max-width: 55rem;
+    height: 30rem;
+    border-radius: 3rem;
+    padding: 2.5rem;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 5rem 8rem 1fr;
+}
+.icon-cs{
+    font-size: 3rem;
+    align-self: center;
+    justify-self:center;
+}
+.txt-dcs{
+    font-size: 2.5rem;
+    font-weight: 100;
+    color: #000;
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+}
+.bas-btn-cs{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    margin-top: 1rem;
+    
+    padding: 1rem;
+    gap: 8rem;
+}
+.btn-cs{
+    cursor: pointer;
+    border: 1px solid gray;
+    border-radius: 0.3rem;
+    width: 100%;
+    max-width: 13rem;
+    font-size: 2rem;
+    height: 4rem;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
