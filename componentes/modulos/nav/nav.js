@@ -1,6 +1,6 @@
 import { conexionAs } from "../../vistas/asistenciaView/asistencia.js";
 import { añadirTablero } from "../../vistas/asistenciaView/asistencia.js";
-import { cambiarGradoSel, cambiarGradoSelAct } from "../../vistas/asistenciaView/funcionAsitenciaGrado.js";
+import { mostrarMsjAsistenciaSegunGrado } from "../../vistas/asistenciaView/funcionAsitenciaGrado.js";
 /* import { consultarAsistencia } from "../../conexiones/enviarDatos.js"; */
 
 
@@ -63,12 +63,15 @@ function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
         localStorage.setItem("idGradoSel", idGradoSel);
 
         let tabAnt = document.querySelector('.sec-tablero');
-        cambiarGradoSel(idGradoSel);
-        cambiarGradoSelAct(idGradoSel);
+        mostrarMsjAsistenciaSegunGrado(idGradoSel);
         
         if(tabAnt){
             tabAnt.remove();
+/*             const mensaje = document.querySelector('.msj-guard-asis');
+            if (mensaje) mensaje.remove(); */
         }
+
+        //PARA CS  localStorage.removeItem("gradosConAsistencia");
 
         conexionAs.appendChild(añadirTablero(nomGradoSel, idGradoSel));
 

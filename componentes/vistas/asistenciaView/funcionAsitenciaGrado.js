@@ -10,16 +10,17 @@ function mostrarMsjAsis() {
     llamarNvGrado?.appendChild(msjGuardAsis);
 }
 
-function cambiarGradoSel(idGradoSelNuevo) {
-    let gradosConAsistencia = JSON.parse(localStorage.getItem("gradosConAsistencia")) || [];
+function mostrarMsjAsistenciaSegunGrado(idGradoSel) {
+    let gradosConAsistencia = JSON.parse(localStorage.getItem("gradosConAsistencia")) || {};
     let mensaje = document.querySelector('.msj-guard-asis');
+    if (mensaje) mensaje.remove();
 
-    if (gradosConAsistencia.includes(idGradoSelNuevo)) {
-        if (!mensaje) {
-            mostrarMsjAsis(); 
-        }
-    } else {
-        if (mensaje) mensaje.remove(); 
+    const tipoAsistencia = gradosConAsistencia[idGradoSel];
+
+    if (tipoAsistencia === "guardado") {
+        mostrarMsjAsis();
+    } else if (tipoAsistencia === "actualizado") {
+        msjActualAsis();
     }
 }
 
@@ -35,18 +36,6 @@ function msjActualAsis() {
     llamarNvGrado?.appendChild(msjGuardAsis);
 }
 
-function cambiarGradoSelAct(idGradoSelNuevo) {
-    let gradosConAsistencia = JSON.parse(localStorage.getItem("gradosConAsistencia")) || [];
-    let mensaje = document.querySelector('.msj-guard-asis');
-
-    if (gradosConAsistencia.includes(idGradoSelNuevo)) {
-        if (!mensaje) {
-            msjActualAsis(); 
-        }
-    } else {
-        if (mensaje) mensaje.remove(); 
-    }
-}
 
 
-export { mostrarMsjAsis, cambiarGradoSel, cambiarGradoSelAct, msjActualAsis }
+export { mostrarMsjAsis, mostrarMsjAsistenciaSegunGrado, msjActualAsis }

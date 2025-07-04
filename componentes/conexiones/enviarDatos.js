@@ -67,11 +67,9 @@ function asistenciaGrado(idGradoSel, asistencia, recFecha, idMaestro){
     .then(data => {
         console.log("Asistencia registrada:", data);
 
-        let asisTomadaGrado = JSON.parse(localStorage.getItem("gradosConAsistencia")) || [];
-        if (!asisTomadaGrado.includes(idGradoSel)) {
-            asisTomadaGrado.push(idGradoSel);
-            localStorage.setItem("gradosConAsistencia", JSON.stringify(asisTomadaGrado));
-        }
+        let asisTomadaGrado = JSON.parse(localStorage.getItem("gradosConAsistencia")) || {};
+        asisTomadaGrado[idGradoSel] = "guardado"; 
+        localStorage.setItem("gradosConAsistencia", JSON.stringify(asisTomadaGrado));
 
         mostrarMsjAsis();
     }
@@ -98,11 +96,9 @@ function asisGradoActualizar(idGradoSel, asistencia, recFecha, idMaestro){
     .then(data => {
         console.log("Asistencia registrada:", data);
 
-        let asisTomadaGrado = JSON.parse(localStorage.getItem("gradosConAsistencia")) || [];
-        if (!asisTomadaGrado.includes(idGradoSel)) {
-            asisTomadaGrado.push(idGradoSel);
-            localStorage.setItem("gradosConAsistencia", JSON.stringify(asisTomadaGrado));
-        }
+        let asisTomadaGrado = JSON.parse(localStorage.getItem("gradosConAsistencia")) || {};
+        asisTomadaGrado[idGradoSel] = "actualizado";
+        localStorage.setItem("gradosConAsistencia", JSON.stringify(asisTomadaGrado));
 
         msjActualAsis();
     }
@@ -156,7 +152,14 @@ function actualizarAsis(idMaestro,idGrado,idAlumno,recFecha,recAsistencia,correo
     })
     .then(res => res.json())
     .then(data => {
-        console.log("Asistencia registrada:", data);
+
+/*         if (process.env.NODE_ENV !== 'production') {
+            console.log("Asistencia registrada:", data);
+        } */
+
+        let asisTomadaGrado = JSON.parse(localStorage.getItem("gradosConAsistencia")) || {};
+        asisTomadaGrado[idGrado] = "actualizado";
+        localStorage.setItem("gradosConAsistencia", JSON.stringify(asisTomadaGrado));
 
     }
 
