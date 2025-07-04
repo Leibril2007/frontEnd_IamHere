@@ -32,6 +32,12 @@ function cargarCS(){
     btnNo.textContent = "No";
     basBtnCS.appendChild(btnNo);
 
+    btnNo.addEventListener("click", function(){
+
+        window.location.href = "asistencia.html";
+
+    })
+
     basVentCS.appendChild(basBtnCS);
 
     seccionLogin.appendChild(basVentCS);

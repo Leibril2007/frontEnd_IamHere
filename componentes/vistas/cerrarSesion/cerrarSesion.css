@@ -58,3 +58,8 @@
     align-items: center;
     justify-content: center;
 }
+.btn-cs:hover{
+    background-color: #005DA9;
+    color: aliceblue;
+    transition: 0.2s;
+}
