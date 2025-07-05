@@ -27,6 +27,18 @@ function cargarCS(){
     btnSi.textContent = "Si";
     basBtnCS.appendChild(btnSi);
 
+    btnSi.addEventListener("click", function(){
+
+
+        localStorage.removeItem("nombreNivel");
+        localStorage.removeItem("recFecha");
+/*         localStorage.removeItem("usuario"); */
+    
+        window.location.href = "login.html";
+
+
+    });
+
     let btnNo = document.createElement('div');
     btnNo.className = "btn-cs  btn-si";
     btnNo.textContent = "No";
