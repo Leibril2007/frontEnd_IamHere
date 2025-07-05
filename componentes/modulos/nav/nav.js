@@ -67,11 +67,7 @@ function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
         
         if(tabAnt){
             tabAnt.remove();
-/*             const mensaje = document.querySelector('.msj-guard-asis');
-            if (mensaje) mensaje.remove(); */
         }
-
-        //PARA CS  localStorage.removeItem("gradosConAsistencia");
 
         conexionAs.appendChild(añadirTablero(nomGradoSel, idGradoSel));
 
