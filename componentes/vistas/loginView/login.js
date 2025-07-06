@@ -100,8 +100,7 @@ function cargarLogin(){
                 localStorage.setItem("usuario", JSON.stringify(data.user));
                 localStorage.setItem("idMaestro", data.user.id);
                 window.location.href = "asistencia.html";
-            }
-
+            }         
 
         } catch (error){
             console.error("Error en el fetch:", error);

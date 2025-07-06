@@ -16,15 +16,28 @@ function users() {
   let c = user.correo;
   let gradoId = user.grados_id;
   let id = user.id;
+  let idCoor = user.coordinador_id;
+  let idProf = user.profesores_id;
 
   console.log(u);
-  console.log(c);
+  console.log("idprof",idProf);
 
   localStorage.setItem("idMaestro", idU);
+  localStorage.setItem("idCoordinador", idCoor);
+  localStorage.setItem("idProfe", id);
 
   cargarNav(u, c, gradoId);
-  cargarGrados(id);
-  cargarNivel(id);
+  /* cargarGrados(id); */
+
+  if ( idCoor === "null" || idCoor === null){
+      cargarGrados(idProf);
+  } else {
+      cargarGrados(idCoor);
+  }
+
+
+  cargarNivel(idProf);
+
   return user;
 }
 
@@ -35,11 +48,12 @@ users();
 
 async function cargarGrados(id) {
 
-    let idEnt = parseInt(id);
+    let idEnt = id;
+
+    console.log("radooos",idEnt);
 
     try {
       const response = await fetch(`http://localhost:3000/profesor/${idEnt}/grados`); 
-/*       console.log("Respuesta del servidor:", response); */
 
       if (!response.ok) throw new Error('Error en la respuesta del servidor');
   

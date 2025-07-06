@@ -1,6 +1,7 @@
 import { conexionAs } from "../../vistas/asistenciaView/asistencia.js";
 import { añadirTablero } from "../../vistas/asistenciaView/asistencia.js";
 import { mostrarMsjAsistenciaSegunGrado } from "../../vistas/asistenciaView/funcionAsitenciaGrado.js";
+import { asisTodosNiveles, obtenerGradosCordi, obtenerNivelesCordi } from "../../conexiones/conexionCoordi.js";
 /* import { consultarAsistencia } from "../../conexiones/enviarDatos.js"; */
 
 
@@ -111,9 +112,27 @@ function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
     btnProyeccionProf.textContent = "Proyección";
     navPag.appendChild(btnProyeccionProf);
 
-    btnProyeccionProf.addEventListener('click', function(){
+    btnProyeccionProf.addEventListener('click', async function(){
 
-        window.location.href = "dashboard.html";
+        let idCoordi = localStorage.getItem("idCoordinador");
+
+        if (idCoordi === "null" || idCoordi === null) {
+          window.location.href = "dashboard.html";
+        } else {
+          const datos = await asisTodosNiveles(); 
+          await obtenerGradosCordi();
+          await obtenerNivelesCordi();
+
+/*           window.location.href = "dashboardCoordinador.html"; */
+      
+          if (datos && datos.length > 0) {
+
+            window.location.href = "dashboardCoordinador.html";
+          } else {
+            console.error("No se cargaron datos de asistencia.");
+            alert("No se pudo cargar la asistencia. Intenta de nuevo.");
+          }
+        }
 
     });
 
