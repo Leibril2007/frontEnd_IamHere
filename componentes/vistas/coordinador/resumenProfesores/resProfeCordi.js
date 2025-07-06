@@ -1,58 +1,62 @@
-import { cargarHeaderSimp } from "../../modulos/header/header.js";
-import { cadaGradoProy } from "../../modulos/opcionesGrados/opcionesGrados.js";
-import { footResDashCordi } from "../../modulos/footer/footerDashboard.js";
+import { cargarHeaderSimp } from "../../../modulos/header/header.js";
+import { resCadProfe } from "../../../modulos/resumenAsistenciaAlumnos/resCadaAsisProfe.js";
+import { footCordiProfes } from "../../../modulos/footer/footerDashboard.js";
 
-let llamarDashboard = document.querySelector('#dashboardCoordiB');
 
-llamarDashboard.appendChild(cargarHeaderSimp());
+let llamarDashboardRes = document.querySelector('#cordinadorProfesores');
 
-function cargarPantallaDash(){
+llamarDashboardRes.appendChild(cargarHeaderSimp());
+
+function cargarResumenDashAl(){
+
+    let idGradoProyec = localStorage.getItem("idGradoProyec");
+    console.log("que llego",idGradoProyec);
+
 
     let baseDash = document.createElement('section');
     baseDash.className = "base-dash";
 
-    /* TITULO GEN */
     let asisTitProyec = document.createElement('h1');
     asisTitProyec.className = "asis-tit-proyec";
-    asisTitProyec.textContent = "Asistencia General";
+    asisTitProyec.textContent = "Resumen de Asistencia";
     baseDash.appendChild(asisTitProyec);
-
-    /* TIT NIV */
 
     let nivelTitProyec = document.createElement('h2');
     nivelTitProyec.className = "nivel-tit-proyec";
-    nivelTitProyec.textContent = "Todos los Niveles";
+    nivelTitProyec.textContent = "Profesores";
 
     baseDash.appendChild(nivelTitProyec);
+
 
     /* GRAFICA */
     let baseGraf = document.createElement('div');
     baseGraf.className = "base-graf";
-
+    
     let canvasProf = document.createElement('canvas');
     canvasProf.id = "graficaGradosProfe";
     canvasProf.className = "design-grafic";
-
+    
     baseGraf.appendChild(canvasProf);
     baseDash.appendChild(baseGraf);
-
-    const todosLNA = JSON.parse(localStorage.getItem("valoresATN")) || [];
-    const datosCrudos = JSON.parse(localStorage.getItem("datosAsistenciaCrudos")) || [];
-    
-    const etiquetas = datosCrudos.map(d => d.nivel); 
     
     const grafica = canvasProf.getContext('2d');
     
     let colores = ['#F57E25', '#000CB6', '#fcc601', '#7F00FF', '#00C49A', '#FF6666', '#2E8B57'];
     
+    /* DATOS PROFESORES */
+    let asistenciaProfesores = JSON.parse(localStorage.getItem("asistenciaProfesores")) || [];
+    const nombresProfesores = asistenciaProfesores.map(p => p.nombre_profesor);
+    const valoresProfesores = asistenciaProfesores.map(p => p.porcentaje_asistencia);
+    
+    /* GRAFICA */
     new Chart(grafica, {
       type: 'bar',
       data: {
-        labels: etiquetas,
+        labels: nombresProfesores,
         datasets: [{
-          label: 'Asistencia semanal por nivel',
-          data: todosLNA,
-          backgroundColor: colores.slice(0, etiquetas.length),
+          label: 'Asistencia tomada por profesores',
+          data: valoresProfesores,
+          backgroundColor: colores.slice(0, nombresProfesores.length),
           borderColor: '#ffffff',
           borderWidth: 2,
           barThickness: 30
@@ -85,10 +89,14 @@ function cargarPantallaDash(){
           x: {
             ticks: {
               color: '#333',
+              callback: function (value) {
+                return value + '%';
+              }
             },
             grid: {
               color: '#ddd'
-            }
+            },
+            max: 100
           },
           y: {
             ticks: {
@@ -106,39 +114,32 @@ function cargarPantallaDash(){
           }
         }
       }
-    });
+});
 
 
-
-
-    /* GRADOS */
 
     let titVGrados = document.createElement('h2');
     titVGrados.className = "tit-v-grados";
-    titVGrados.textContent = "Ver cada grado"
+    titVGrados.textContent = "Lista de profesores"
     baseDash.appendChild(titVGrados);
 
-    let dvBaseGrados = document.createElement('div');
-    dvBaseGrados.className = "dv-base-grados";
+    /* CADA PROFE */
 
+    let dvBaseAlum = document.createElement('div');
+    dvBaseAlum.className = "dv-base-alum";
 
-    const gradosGuardados = JSON.parse(localStorage.getItem("listaGrados")) || [];
-
-    console.log("grad", gradosGuardados);
-
-    gradosGuardados.forEach(cGrado => {
-
-        dvBaseGrados.appendChild(cadaGradoProy(cGrado.nombre, cGrado.id));        
-
+    asistenciaProfesores.forEach(cProfe => {
+      const nombre = cProfe.nombre_profesor;
+      const grado = cProfe.grado;
+    
+      dvBaseAlum.appendChild(resCadProfe(nombre, grado));
     });
 
-
-    baseDash.appendChild(dvBaseGrados);
+    baseDash.appendChild(dvBaseAlum);
 
     return baseDash;
 }
 
-llamarDashboard.appendChild(cargarPantallaDash());
-llamarDashboard.appendChild(footResDashCordi());
+llamarDashboardRes.appendChild(cargarResumenDashAl());
 
-export { cargarPantallaDash };
+llamarDashboardRes.appendChild(footCordiProfes());

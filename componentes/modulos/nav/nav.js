@@ -1,7 +1,7 @@
 import { conexionAs } from "../../vistas/asistenciaView/asistencia.js";
 import { añadirTablero } from "../../vistas/asistenciaView/asistencia.js";
 import { mostrarMsjAsistenciaSegunGrado } from "../../vistas/asistenciaView/funcionAsitenciaGrado.js";
-import { asisTodosNiveles } from "../../conexiones/conexionCoordi.js";
+import { asisTodosNiveles, obtenerGradosCordi, obtenerNivelesCordi } from "../../conexiones/conexionCoordi.js";
 /* import { consultarAsistencia } from "../../conexiones/enviarDatos.js"; */
 
 
@@ -120,6 +120,8 @@ function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
           window.location.href = "dashboard.html";
         } else {
           const datos = await asisTodosNiveles(); 
+          await obtenerGradosCordi();
+          await obtenerNivelesCordi();
 
 /*           window.location.href = "dashboardCoordinador.html"; */
       
