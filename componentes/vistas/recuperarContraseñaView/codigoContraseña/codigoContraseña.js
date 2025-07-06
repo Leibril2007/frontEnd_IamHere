@@ -59,7 +59,7 @@ function cargarVCodigo(){
         const almCorreoIng = localStorage.getItem("almCorreoIng");
 
         try {
-            const response = await fetch('http://localhost:3000/verificarCodigo', {
+            const response = await fetch('https://backend-iamhere.onrender.com/verificarCodigo', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

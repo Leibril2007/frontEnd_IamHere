@@ -65,7 +65,7 @@ function cargarLogin(){
         console.log("id grado tomado", idGradoSel);
         
         try {
-            const response = await fetch('http://localhost:3000/agregarAlumno', {
+            const response = await fetch('https://backend-iamhere.onrender.com/agregarAlumno', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

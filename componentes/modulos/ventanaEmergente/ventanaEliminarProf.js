@@ -29,7 +29,7 @@ function ventEliminarProf(idProfEliminar) {
         console.log("profe eli", idProfEliminar);
 
         try {
-            const response = await fetch('http://localhost:3000/eliminarProfesor', {
+            const response = await fetch('https://backend-iamhere.onrender.com/eliminarProfesor', {
               method: 'DELETE',
               headers: {
                 'Content-Type': 'application/json',

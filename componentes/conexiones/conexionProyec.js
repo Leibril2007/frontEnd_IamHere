@@ -1,7 +1,7 @@
 function alumnosProyec() {
 
     return new Promise((resolve, reject) => {
-      fetch(`http://localhost:3000/alumnos`)
+      fetch(`https://backend-iamhere.onrender.com/alumnos`)
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -19,7 +19,7 @@ function alumnosProyec() {
 }
 
 async function asisProyecAlumG(idGrado) {
-    const respuesta = await fetch(`http://localhost:3000/proyecciones/asistenciaGrado/${idGrado}`);
+    const respuesta = await fetch(`https://backend-iamhere.onrender.com/proyecciones/asistenciaGrado/${idGrado}`);
     const datos = await respuesta.json();
   
     const valoresAG = datos.map(d => d.porcentaje_asistencia); 
@@ -33,7 +33,7 @@ async function asisProyecAlumG(idGrado) {
   
 
 async function obtenerAsistenciaAlumno(idAlumno) {
-    const res = await fetch(`http://localhost:3000/proyecciones/asistenciaAlumEsp/${idAlumno}`);
+    const res = await fetch(`https://backend-iamhere.onrender.com/proyecciones/asistenciaAlumEsp/${idAlumno}`);
     const datos = await res.json();
 
     const valoresAsisAl = datos.map(d => d.porcentaje_asistencia); 
@@ -48,7 +48,7 @@ async function obtenerAsistenciaAlumno(idAlumno) {
   
 
 async function obtenerReportAlum(idAlumno) {
-  const res = await fetch(`http://localhost:3000/proyecciones/recUniforme/${idAlumno}`);
+  const res = await fetch(`https://backend-iamhere.onrender.com/proyecciones/recUniforme/${idAlumno}`);
   const datos = await res.json();
 
   localStorage.setItem("lisObsUniPA", JSON.stringify(datos));
@@ -56,7 +56,7 @@ async function obtenerReportAlum(idAlumno) {
 }
 
 async function obtenerObsAlum(idAlumno) {
-  const res = await fetch(`http://localhost:3000/proyecciones/recObservaciones/${idAlumno}`);
+  const res = await fetch(`https://backend-iamhere.onrender.com/proyecciones/recObservaciones/${idAlumno}`);
   const datos = await res.json();
 
   localStorage.setItem("lisObsCAl", JSON.stringify(datos));

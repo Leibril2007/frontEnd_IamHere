@@ -68,7 +68,7 @@ function cargarRecuperar(){
 
         try {
             
-            const response = await fetch('http://localhost:3000/enviarCodigo', {
+            const response = await fetch('https://backend-iamhere.onrender.com/enviarCodigo', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

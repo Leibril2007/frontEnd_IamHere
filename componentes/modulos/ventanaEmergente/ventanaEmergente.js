@@ -42,7 +42,7 @@ function ventUniforme(idAlumno) {
 
         try {
         
-            let response = await fetch('http://localhost:3000/correoPorUniforme ', {
+            let response = await fetch('https://backend-iamhere.onrender.com/correoPorUniforme ', {
 
                 method: 'POST',
                 headers: {
@@ -125,7 +125,7 @@ function ventCorreo(idAlumno) {
 
         try {
 
-            let response = await fetch('http://localhost:3000/verificarCorreo', {
+            let response = await fetch('https://backend-iamhere.onrender.com/verificarCorreo', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -191,7 +191,7 @@ function ventEliminar(idAlumnoEliminar) {
         console.log("contra", valorInpContra);
 
         try{
-            const response = await fetch(`http://localhost:3000/eliminarAlumno`,{
+            const response = await fetch(`https://backend-iamhere.onrender.com/eliminarAlumno`,{
 
                 method: 'DELETE',
                 headers: {
@@ -319,7 +319,7 @@ function ventCorreoGen() {
             almacenarAvisoGeneral(observaciones, idGradoSel, idMaestro);
 
             try {
-                const response = await fetch("http://localhost:3000/correoGeneral", {
+                const response = await fetch("https://backend-iamhere.onrender.com/correoGeneral", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"

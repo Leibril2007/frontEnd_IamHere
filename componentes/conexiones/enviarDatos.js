@@ -13,7 +13,7 @@ function agregarAsis(idMaestro,idGrado,idAlumno,recFecha,recAsistencia,correoPer
       datosAsistencia.uniforme_id = recUniAlum;
     }
     
-    fetch("http://localhost:3000/agregarAsistencia", {
+    fetch("https://backend-iamhere.onrender.com/agregarAsistencia", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -27,7 +27,7 @@ function agregarAsis(idMaestro,idGrado,idAlumno,recFecha,recAsistencia,correoPer
 
 
 function agregarUniforme(observaciones, alumnos_id) {
-    return fetch("http://localhost:3000/uniforme", {
+    return fetch("https://backend-iamhere.onrender.com/uniforme", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -51,7 +51,7 @@ function agregarUniforme(observaciones, alumnos_id) {
 
 function asistenciaGrado(idGradoSel, asistencia, recFecha, idMaestro){
 
-    fetch("http://localhost:3000/asistenciaDeGrado", {
+    fetch("https://backend-iamhere.onrender.com/asistenciaDeGrado", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -80,7 +80,7 @@ function asistenciaGrado(idGradoSel, asistencia, recFecha, idMaestro){
 
 function asisGradoActualizar(idGradoSel, asistencia, recFecha, idMaestro){
 
-    fetch("http://localhost:3000/asistenciaDeGrado", {
+    fetch("https://backend-iamhere.onrender.com/asistenciaDeGrado", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

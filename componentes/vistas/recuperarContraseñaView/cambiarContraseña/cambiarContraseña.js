@@ -71,7 +71,7 @@ function cargarCambio(){
 
             try {
 
-                const response = await fetch('http://localhost:3000/cambiarContrasena', {
+                const response = await fetch('https://backend-iamhere.onrender.com/cambiarContrasena', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

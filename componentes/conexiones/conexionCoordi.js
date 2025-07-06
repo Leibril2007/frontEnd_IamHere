@@ -1,6 +1,6 @@
 async function asisTodosNiveles() {
     try {
-      const respuesta = await fetch('http://localhost:3000/coordinador/asistenciaTodosNiveles');
+      const respuesta = await fetch('https://backend-iamhere.onrender.com/coordinador/asistenciaTodosNiveles');
       
       if (!respuesta.ok) throw new Error('Error al obtener los datos de asistencia');
   
@@ -23,7 +23,7 @@ async function asisTodosNiveles() {
 
 async function obtenerGradosCordi() {
     try {
-      const respuesta = await fetch('http://localhost:3000/grados');
+      const respuesta = await fetch('https://backend-iamhere.onrender.com/grados');
   
       if (!respuesta.ok) throw new Error('Error al obtener los grados');
   
@@ -43,7 +43,7 @@ async function obtenerGradosCordi() {
 
 async function obtenerNivelesCordi() {
   try {
-    const respuesta = await fetch('http://localhost:3000/niveles');
+    const respuesta = await fetch('https://backend-iamhere.onrender.com/niveles');
 
     if (!respuesta.ok) throw new Error('Error al obtener los grados');
 
@@ -63,7 +63,7 @@ async function obtenerNivelesCordi() {
   
 async function asisPorProfesor() {
   try {
-    const respuesta = await fetch('http://localhost:3000/coordinador/asistenciaPorProfesor');
+    const respuesta = await fetch('https://backend-iamhere.onrender.com/coordinador/asistenciaPorProfesor');
 
     if (!respuesta.ok) {
       throw new Error('Error al obtener los datos de asistencia por profesor');

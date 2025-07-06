@@ -53,7 +53,7 @@ async function cargarGrados(id) {
     console.log("radooos",idEnt);
 
     try {
-      const response = await fetch(`http://localhost:3000/profesor/${idEnt}/grados`); 
+      const response = await fetch(`https://backend-iamhere.onrender.com/profesor/${idEnt}/grados`); 
 
       if (!response.ok) throw new Error('Error en la respuesta del servidor');
   
@@ -89,7 +89,7 @@ async function cargarNivel(id) {
   let idEnt = parseInt(id);
 
   try {
-    const response = await fetch(`http://localhost:3000/profesor/${idEnt}/nivel`); 
+    const response = await fetch(`https://backend-iamhere.onrender.com/profesor/${idEnt}/nivel`); 
 
     if (!response.ok) throw new Error('Error en la respuesta del servidor');
 
@@ -112,7 +112,7 @@ async function cargarNivel(id) {
 function alumnosBd() {
 
   return new Promise((resolve, reject) => {
-    fetch(`http://localhost:3000/alumnos`)
+    fetch(`https://backend-iamhere.onrender.com/alumnos`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -131,7 +131,7 @@ function alumnosBd() {
 
 
 async function obtenerAsistenciaPGraf(nivelId) {
-  const respuesta = await fetch(`http://localhost:3000/asistenciaPieNivel/${nivelId}`);
+  const respuesta = await fetch(`https://backend-iamhere.onrender.com/asistenciaPieNivel/${nivelId}`);
   const datos = await respuesta.json();
 
 
