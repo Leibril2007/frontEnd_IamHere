@@ -1,6 +1,7 @@
 import { ventEliminarProf } from "../ventanaEmergente/ventanaEliminarProf.js";
 
-function resCadProfe(nomComp, gradoGuia){
+function resCadProfe(nomComp, gradoGuia, idProf){
+    
 
     let baseCGProy = document.createElement('div');
     baseCGProy.className = "base-c-g-proy";
@@ -26,8 +27,8 @@ function resCadProfe(nomComp, gradoGuia){
     baseCGProy.appendChild(btnElimi);
 
     btnElimi.addEventListener("click", function(){
-
-        baseCGProy.appendChild(ventEliminarProf());
+        console.log(idProf);
+        baseCGProy.appendChild(ventEliminarProf(idProf));
 
     });
 

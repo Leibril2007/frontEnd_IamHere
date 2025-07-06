@@ -17,9 +17,10 @@ function users() {
   let gradoId = user.grados_id;
   let id = user.id;
   let idCoor = user.coordinador_id;
+  let idProf = user.profesores_id;
 
   console.log(u);
-  console.log(c);
+  console.log("idprof",idProf);
 
   localStorage.setItem("idMaestro", idU);
   localStorage.setItem("idCoordinador", idCoor);
@@ -29,13 +30,13 @@ function users() {
   /* cargarGrados(id); */
 
   if ( idCoor === "null" || idCoor === null){
-      cargarGrados(id);
+      cargarGrados(idProf);
   } else {
       cargarGrados(idCoor);
   }
 
 
-  cargarNivel(id);
+  cargarNivel(idProf);
 
   return user;
 }

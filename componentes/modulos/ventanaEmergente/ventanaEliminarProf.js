@@ -1,4 +1,4 @@
-function ventEliminarProf(idAlumnoEliminar) {
+function ventEliminarProf(idProfEliminar) {
     let contenedor = document.createElement('div');
     contenedor.className = 'ventana';
 
@@ -23,47 +23,34 @@ function ventEliminarProf(idAlumnoEliminar) {
     btnConfirmar.addEventListener('click', async function(){
 
         let valorInpContra = inputContra.value;
-        let alumnoAEliminar = idAlumnoEliminar;
+        let profeEliminar = idProfEliminar;
 
         console.log("contra", valorInpContra);
+        console.log("profe eli", idProfEliminar);
 
-        try{
-            const response = await fetch(`http://localhost:3000/eliminarAlumno`,{
-
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    passIng: valorInpContra,
-                    idAlumnoEl: alumnoAEliminar
-                })
+        try {
+            const response = await fetch('http://localhost:3000/eliminarProfesor', {
+              method: 'DELETE',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                passIng: valorInpContra,
+                idUsuario: profeEliminar,
+              }),
             });
-
+        
             const data = await response.json();
-
-            if(!response.ok){
-                let errorMsg = document.createElement('p');
-                errorMsg.className = "error";
-                errorMsg.textContent = data.message || "Error al eliminar alumno";
-                contenedor.appendChild(errorMsg);
-                return;
+        
+            if (response.ok) {
+              alert(data.message);
             } else {
-                let msjGuardVent = document.createElement('p');
-                msjGuardVent.className = "msj-guard-vent";
-                msjGuardVent.textContent = "El alumno fue eliminado";
-                contenedor.appendChild(msjGuardVent);
+              alert(`Error: ${data.message}`);
             }
-
-
-        } catch (error){
-            console.error("Error en el fetch:", error);
-            let errorMsg = document.createElement('p');
-            errorMsg.className = "error";
-            errorMsg.textContent = "No se pudo conectar al servidor";
-            contenedor.appendChild(errorMsg);
-        }
-
+          } catch (error) {
+            console.error('Error en la petición:', error);
+            alert('Error del servidor al intentar eliminar al profesor.');
+          }
 
 
     });

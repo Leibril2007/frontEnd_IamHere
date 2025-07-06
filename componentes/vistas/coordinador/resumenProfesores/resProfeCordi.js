@@ -45,6 +45,7 @@ function cargarResumenDashAl(){
     
     /* DATOS PROFESORES */
     let asistenciaProfesores = JSON.parse(localStorage.getItem("asistenciaProfesores")) || [];
+    console.log(asistenciaProfesores);
     const nombresProfesores = asistenciaProfesores.map(p => p.nombre_profesor);
     const valoresProfesores = asistenciaProfesores.map(p => p.porcentaje_asistencia);
     
@@ -131,8 +132,9 @@ function cargarResumenDashAl(){
     asistenciaProfesores.forEach(cProfe => {
       const nombre = cProfe.nombre_profesor;
       const grado = cProfe.grado;
+      const id = cProfe.usuario_id;
     
-      dvBaseAlum.appendChild(resCadProfe(nombre, grado));
+      dvBaseAlum.appendChild(resCadProfe(nombre, grado, id));
     });
 
     baseDash.appendChild(dvBaseAlum);

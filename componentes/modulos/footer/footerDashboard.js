@@ -94,12 +94,12 @@ function footResDashCordi(){
 
     let btnRegresoProyec = document.createElement('div');
     btnRegresoProyec.className = "btn-proyec  btn-regreso-proyec";
-    btnRegresoProyec.textContent = "Regresar a proyecciones";
+    btnRegresoProyec.textContent = "Regresar a lista";
     footerProyec.appendChild(btnRegresoProyec);
 
     btnRegresoProyec.addEventListener("click", function(){
 
-        window.location.href = "dashboardCoordinador.html";
+        window.location.href = "asistencia.html";
 
     });
 
