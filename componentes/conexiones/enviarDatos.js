@@ -137,7 +137,7 @@ function almacenarAvisoGeneral(correoGen, idGrado, idMaestro){
 
 function actualizarAsis(idMaestro,idGrado,idAlumno,recFecha,recAsistencia,correoPers,recUniAlum) {
     
-    fetch(`http://localhost:3000/actualizarAsis/${idAlumno}/${recFecha}`, {
+    fetch(`https://backend-iamhere.onrender.com/actualizarAsis/${idAlumno}/${recFecha}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
