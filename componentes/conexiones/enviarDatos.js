@@ -112,7 +112,7 @@ function almacenarAvisoGeneral(correoGen, idGrado, idMaestro){
     
     console.log("AVISO: ", correoGen, idGrado, idMaestro);
 
-    return fetch("http://localhost:3000/avisoGeneralAlum", {
+    return fetch("https://backend-iamhere.onrender.com/avisoGeneralAlum", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
