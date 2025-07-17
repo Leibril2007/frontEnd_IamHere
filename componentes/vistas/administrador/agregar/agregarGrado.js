@@ -67,7 +67,7 @@ function cargarLogin(){
             if (response.ok) {
                 let msjGuardEx = document.createElement('p');
                 msjGuardEx.className = "msj-guard-ex";
-                msjGuardEx.textContent = "¡Nivel guardado con éxito!";
+                msjGuardEx.textContent = "Grado guardado con éxito!";
                 formularioLogin.appendChild(msjGuardEx);
             } else {
                 let errorText = await response.text();
