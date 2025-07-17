@@ -1,0 +1,17 @@
+.cada-niv{
+    align-self: center;
+    justify-self: center;
+
+    background-color: orange;
+    color: aliceblue;
+    width: 100%;
+    max-width: 27rem;
+    height: 8.5rem;
+    border-radius: 0.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+}

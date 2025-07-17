@@ -23,7 +23,7 @@ async function asisTodosNiveles() {
 
 async function obtenerGradosCordi() {
     try {
-      const respuesta = await fetch('https://backend-iamhere.onrender.com/grados');
+      const respuesta = await fetch('http://localhost:3000/grados');
   
       if (!respuesta.ok) throw new Error('Error al obtener los grados');
   
@@ -31,7 +31,6 @@ async function obtenerGradosCordi() {
   
       console.log("Grados obtenidos:", grados);
   
-      // Puedes guardarlos en localStorage si los vas a reutilizar
       localStorage.setItem("listaGrados", JSON.stringify(grados));
   
       return grados;

@@ -1,0 +1,113 @@
+@media (max-width: 835px) {
+
+    #nivAdminB{
+        width: 100%;
+        height: 100vh;
+    
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 5rem 1fr;
+    }
+    
+    .base-dash{
+        grid-column: 1/2;
+        padding: 1.5rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 3.5rem ;
+    }
+    
+    
+    .dv-proyAdmin{
+        grid-column: 1/2;
+        align-self: center;
+        justify-self: center;
+    
+        background-color: orange;
+        color: aliceblue;
+        width: 100%;
+        max-width: 27rem;
+        height: 8.5rem;
+        border-radius: 0.5rem;
+    
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        cursor: pointer;
+    }
+    
+    .asis-tit-proyec{
+        grid-column: 1/2;
+        color: #000CB6;
+        font-family: "Orelega One", serif;
+        font-weight: 400;
+        text-align: center;
+        align-self: flex-end;
+        font-size: 2.7rem;
+    }
+    .nivel-tit-proyec{
+        grid-column: 1/2;
+        color: #fcc601;
+        font-family: "Orelega One", serif;
+        font-weight: 200;
+        text-align: center;
+        align-self: center;
+        font-size: 2rem;
+    }
+    
+    
+    /* GRADOS */
+    .tit-v-grados{
+        grid-column: 1/2;
+        color: #000CB6;
+        font-family: "Orelega One", serif;
+        font-weight: 400;
+        align-self: flex-end;
+        font-size: 2rem;
+    }
+    
+    .dv-base-niv{
+        grid-column: 1/2;
+        margin-top: 1.8rem;
+        padding: 2rem 1rem;
+        gap: 3rem;
+    
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .btn-regreso{
+        grid-column: 1/2;
+        font-size: 2rem;
+        color: #727272;
+        align-self: center;
+        justify-self: center;
+    }
+    .btn-descarg-proyec{
+        grid-column: 1/2;
+        margin-top: 1rem;
+    
+        background-color: #F57E25;
+        color: white;
+        font-family: Lemon;
+    }
+    .btn-proyec{
+        grid-column: 1/2;
+        width: 100%;
+        max-width: 30rem;
+        font-size: 1.7rem;
+        height: 3.5rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    
+        align-self: center;
+        justify-self: center;
+    }
+    
+}
+
+
+

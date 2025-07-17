@@ -1,3 +1,5 @@
+import { llenarSelectGrados } from "./conexionAdmin.js";
+import { obtenerNivelesCordi, obtenerGradosCordi } from "./conexionCoordi.js";
 import { cargarNav } from "../modulos/nav/nav.js";
 
 function users() {
@@ -11,32 +13,44 @@ function users() {
 
   const user = JSON.parse(datosGuardados); 
 
-  let idU = user.id;
-  let u = user.usuario;
-  let c = user.correo;
-  let gradoId = user.grados_id;
-  let id = user.id;
-  let idCoor = user.coordinador_id;
-  let idProf = user.profesores_id;
+  const {
+    id,
+    usuario: u,
+    correo: c,
+    grados_id: gradoId,
+    coordinador_id: idCoor,
+    profesores_id: idProf,
+    administrador_id: idAdmin,
+    esAdministrador
+  } = user;
 
   console.log(u);
-  console.log("idprof",idProf);
+  console.log("idprof", idProf);
+  console.log("esAdministrador", esAdministrador);
 
-  localStorage.setItem("idMaestro", idU);
+  localStorage.setItem("idMaestro", id);
   localStorage.setItem("idCoordinador", idCoor);
-  localStorage.setItem("idProfe", id);
+  localStorage.setItem("idProfe", idProf);
+  localStorage.setItem("esAdmin", esAdministrador);
 
   cargarNav(u, c, gradoId);
-  /* cargarGrados(id); */
 
-  if ( idCoor === "null" || idCoor === null){
-      cargarGrados(idProf);
-  } else {
-      cargarGrados(idCoor);
+  if  (esAdministrador) {
+    obtenerGradosCordi().then(grados => {
+      llenarSelectGrados(grados);
+    });
+  
+    obtenerNivelesCordi().then(niveles => {
+      console.log("Niveles obtenidos:", niveles);
+    });
+    
+  } else if (idCoor) {
+    cargarGrados(idCoor);  
+    cargarNivel(idCoor);   
+  } else if (idProf) {
+    cargarGrados(idProf);
+    cargarNivel(idProf);
   }
-
-
-  cargarNivel(idProf);
 
   return user;
 }
@@ -47,42 +61,42 @@ users();
 
 
 async function cargarGrados(id) {
+  const esAdministrador = localStorage.getItem("esAdmin") === "true";
 
-    let idEnt = id;
+  try {
+    let response;
 
-    console.log("radooos",idEnt);
+    if (esAdministrador) {
+      response = await fetch('https://backend-iamhere.onrender.com/grados');
+    } else {
+      response = await fetch(`https://backend-iamhere.onrender.com/profesor/${id}/grados`);
+    }
 
-    try {
-      const response = await fetch(`https://backend-iamhere.onrender.com/profesor/${idEnt}/grados`); 
+    if (!response.ok) throw new Error('Error en la respuesta del servidor');
 
-      if (!response.ok) throw new Error('Error en la respuesta del servidor');
-  
-      const grados = await response.json();
-  
-      const select = document.querySelector('.select');
+    const grados = await response.json();
 
-      if (select.options.length > 1) {
-        return; 
-      }
-  
+    const select = document.querySelector('.select');
+    if (select && select.options.length <= 1) {
       grados.forEach(grado => {
         const option = document.createElement('option');
         option.value = grado.id;
         option.textContent = grado.nombre;
         select.appendChild(option);
       });
-      
-
-      localStorage.setItem("gradosDelNivel", JSON.stringify(grados));
-      console.log("grados",grados);
-
-      return grados;
-      
-    } catch (error) {
-      console.error('Error al cargar los grados:', error);
-      return [];
     }
+
+    localStorage.setItem("gradosDelNivel", JSON.stringify(grados));
+    console.log("grados", grados);
+
+    return grados;
+
+  } catch (error) {
+    console.error('Error al cargar los grados:', error);
+    return [];
+  }
 }
+
 
 async function cargarNivel(id) {
 

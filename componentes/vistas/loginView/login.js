@@ -99,6 +99,8 @@ function cargarLogin(){
             } else {
                 localStorage.setItem("usuario", JSON.stringify(data.user));
                 localStorage.setItem("idMaestro", data.user.id);
+                localStorage.setItem("esAdmin", data.user.esAdministrador);
+                localStorage.setItem("usId", data.user.id);
                 window.location.href = "asistencia.html";
             }         
 

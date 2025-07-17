@@ -112,7 +112,7 @@ function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
     btnProyeccionProf.textContent = "Proyección";
     navPag.appendChild(btnProyeccionProf);
 
-    btnProyeccionProf.addEventListener('click', async function(){
+/*     btnProyeccionProf.addEventListener('click', async function(){
 
         let idCoordi = localStorage.getItem("idCoordinador");
 
@@ -122,8 +122,6 @@ function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
           const datos = await asisTodosNiveles(); 
           await obtenerGradosCordi();
           await obtenerNivelesCordi();
-
-/*           window.location.href = "dashboardCoordinador.html"; */
       
           if (datos && datos.length > 0) {
 
@@ -134,6 +132,32 @@ function cargarNav(dataUsuarioN, dataCorreoN, dataGradoI){
           }
         }
 
+    }); */
+
+    btnProyeccionProf.addEventListener('click', async function () {
+      let idCoordi = localStorage.getItem("idCoordinador");
+      let esAdmin = localStorage.getItem("esAdmin");
+    
+      esAdmin = esAdmin === "true";
+    
+      if (esAdmin) {
+        window.location.href = "dashboardAdmin.html";
+      } else if (idCoordi !== "null" && idCoordi !== null) {
+        const datos = await asisTodosNiveles();
+    
+        await obtenerGradosCordi();
+        await obtenerNivelesCordi();
+    
+        if (datos && datos.length > 0) {
+          window.location.href = "dashboardCoordinador.html";
+        } else {
+          console.error("No se cargaron datos de asistencia.");
+          alert("No se pudo cargar la asistencia. Intenta de nuevo.");
+        }
+      } 
+      else {
+        window.location.href = "dashboard.html";
+      }
     });
 
 

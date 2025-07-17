@@ -149,5 +149,4 @@ function footCordiProfes(){
 
 }
 
-
 export { footProyecciones, footResDash, footResDashCordi, footCordiProfes };

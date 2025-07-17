@@ -1,0 +1,81 @@
+#nivAdminB {
+    width: 100%;
+    height: 100vh;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 5rem 1fr;
+}
+
+.base-dash {
+    padding: 2rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 4rem 35rem 15rem;
+    gap: 2rem;
+}
+
+.dv-base-grados{
+    grid-column: 1/3;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.dv-proyAdmin {
+    grid-column: auto;
+    align-self: center;
+    justify-self: center;
+
+    background-color: orange;
+    color: aliceblue;
+    width: 100%;
+    max-width: 40rem;
+    height: 10rem;
+    border-radius: 0.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+.asis-tit-proyec {
+    grid-column: 1 / 3;
+    color: #000CB6;
+    font-family: "Orelega One", serif;
+    font-weight: 400;
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.nivel-tit-proyec {
+    grid-column: 1 / 3;
+    color: #fcc601;
+    font-family: "Orelega One", serif;
+    font-weight: 200;
+    text-align: center;
+    font-size: 2.2rem;
+}
+
+.tit-v-grados {
+    grid-column: 1 / 3;
+    color: #000CB6;
+    font-family: "Orelega One", serif;
+    font-weight: 400;
+    font-size: 2.2rem;
+    text-align: center;
+}
+.btn-regreso {
+    grid-column: 2 / 3;
+    font-size: 2rem;
+    color: #727272;
+    text-align: center;
+    align-self: center;
+    justify-self: center;
+}
+
+.base-c-g-proy {
+    margin-top: 2rem;
+}
