@@ -1,9 +1,8 @@
 .footer-proyec{
     display: flex;
     align-items: center;
-    justify-content: center; 
-    flex-direction: column;   
-    gap: 1.5rem;
+    justify-content: space-between; 
+    padding: 0rem 5rem;
 }
 
 .btn-proyec{
@@ -26,4 +25,15 @@
 }
 .btn-regreso-proyec{
     color: #727272;
+}
+.btn-regreso-proyec:hover{
+    background-color: #0c6dc2;
+    color: aliceblue;
+    transition: 0.3s;
+}
+
+.btn-descarg-proyec:hover {
+    background: linear-gradient(to right, #86fde8, #acb6e5);
+    /* transition: 5s; */
+    transition: 0.3s;
 }

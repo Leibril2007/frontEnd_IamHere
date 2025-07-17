@@ -1,0 +1,72 @@
+@media(max-width: 835px){
+    #dashboardCoordiB{
+        width: 100%;
+        height: 100vh;
+    
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 5rem 1fr 13rem;
+    }
+    
+    .base-dash{
+        padding: 1.5rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 3.5rem 3.8rem 35rem 6.5rem 1fr;
+    }
+    
+    .asis-tit-proyec{
+        grid-column: 1/2;
+        color: #000CB6;
+        font-family: "Orelega One", serif;
+        font-weight: 400;
+        text-align: center;
+        align-self: flex-end;
+        font-size: 2.7rem;
+    }
+    .nivel-tit-proyec{
+        grid-column: 1/3;
+        color: #fcc601;
+        font-family: "Orelega One", serif;
+        font-weight: 200;
+        text-align: center;
+        align-self: center;
+        font-size: 2rem;
+    }
+    
+    /* GRAFICA */
+    .base-graf{
+        height: 100%;
+        grid-row: 3/4;
+        grid-column: 1/3;
+        margin-top: 2rem;
+        width: 100%;
+        max-width: 35rem;
+    }
+    #graficaGradosProfe{
+        height: 100%;
+        width: 100%;
+    }
+    
+    /* GRADOS */
+    .tit-v-grados{
+        grid-column: 1/3;
+        color: #000CB6;
+        font-family: "Orelega One", serif;
+        font-weight: 400;
+        align-self: flex-end;
+        font-size: 2rem;
+    }
+    
+    .dv-base-grados{
+        grid-column: 1/3;
+        margin-top: 1.8rem;
+        padding: 2rem 1rem;
+        gap: 3rem;
+    
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    
+    
+}
