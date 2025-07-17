@@ -23,7 +23,7 @@ async function asisTodosNiveles() {
 
 async function obtenerGradosCordi() {
     try {
-      const respuesta = await fetch('http://localhost:3000/grados');
+      const respuesta = await fetch('https://backend-iamhere.onrender.com/grados');
   
       if (!respuesta.ok) throw new Error('Error al obtener los grados');
   
