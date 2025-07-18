@@ -10,10 +10,11 @@
 .base-dash{
     padding: 1.5rem;
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 3.5rem 3.8rem auto 6.5rem 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 3.5rem 3.8rem 6.5rem 1fr;
 }
 .asis-tit-proyec{
+    grid-column: 1/3;
     color: #000CB6;
     font-family: "Orelega One", serif;
     font-weight: 400;
@@ -22,6 +23,7 @@
     font-size: 2.7rem;
 }
 .nivel-tit-proyec{
+    grid-column: 1/3;
     color: #fcc601;
     font-family: "Orelega One", serif;
     font-weight: 200;
@@ -31,10 +33,12 @@
 }
 /* GRAFICA */
 .base-graf{
+    grid-column: 1/2;
+    grid-row: 3/6;
     margin-top: 2rem;
     width: 100%;
-    /* min-width: 34rem; */
-/*     max-width: 78rem; */
+    justify-self: center;
+    align-self: center;
     max-width: 34rem;
     min-height: 60rem;
 }
@@ -44,13 +48,14 @@
 }
 
 .tit-v-grados{
+    grid-column: 2/3;
     color: #000CB6;
     font-family: "Orelega One", serif;
     font-weight: 400;
     align-self: flex-end;
+    justify-self: center;
     font-size: 2rem;
 }
 .dv-base-alum{
-/*     margin-top: 2rem; */
-    grid-row: 5/6;
+    grid-column: 2/3;
 }

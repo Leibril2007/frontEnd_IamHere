@@ -60,7 +60,6 @@ function cargarResumenDashAl(){
           backgroundColor: colores.slice(0, nombresProfesores.length),
           borderColor: '#ffffff',
           borderWidth: 2,
-          barThickness: 30
         }]
       },
       options: {

@@ -55,7 +55,6 @@ function cargarPantallaDash(){
           backgroundColor: colores.slice(0, etiquetas.length),
           borderColor: '#ffffff',
           borderWidth: 2,
-          barThickness: 30
         }]
       },
       options: {
